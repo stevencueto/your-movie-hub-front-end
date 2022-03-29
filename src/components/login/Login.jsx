@@ -1,10 +1,17 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
+import { useState, useEffect, useRef} from 'react'
 import * as jose from 'jose'
 import { useNavigate } from 'react-router-dom'
+import './login.css'
+import Iphone from '../../Iphone'
+
 
 const Login = () => {
 	let navigate = useNavigate();
+	const loginRef = React.createRef(null)
+	const errPassword = useRef(null)
 
+	const [errMessage, setErrMessage] = useState("")
     const [possibleUser, setPossibleUser] = useState({
         email: '',
         password: ''
@@ -32,8 +39,8 @@ const Login = () => {
 				},
 				body: JSON.stringify(possibleUser),
 			})
-			console.log(loginRequest)
 			const loginResponse = await loginRequest.json()
+			console.log(loginResponse.success, "---")
 			if (loginResponse.success) {
 				localStorage.setItem('token', loginResponse.data)
 				setPossibleUser({
@@ -42,34 +49,48 @@ const Login = () => {
 				})
 				alert('Login successful')
 				navigate("/", { replace: true });
-			} else {
-				alert(loginResponse.data)
+			} else if(loginResponse.data === "Wrong Password"){
+				setErrMessage("Sorry, your password was incorrect. Please double-check your password.")
+				errPassword.current.focus()
+			}else if (loginResponse.data === "No Matching Credentials in The DBS"){
+				loginRef.current.focus()
+				setErrMessage(loginResponse.data)
 			}
-			console.log(loginResponse)
 		}catch(err){
 			console.log(err)
-			alert("Internal Server error")
+			setErrMessage('Failed to communite with server')
 		}
 		
 	}
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		if (token) navigate("/", { replace: true });
+		loginRef.current.focus()
 	}, [])
 
+	
+
 	return (
-		<section>
+		<section className='home-grid'>
+			<Iphone/>
+			<article className='login-section page login-err'>
 			<h1>Login</h1>
-			<form onSubmit={(e) => loginUser(e)}>
+			{!!errMessage && <p className='error-mesage'> {errMessage} </p>}
+			<form onSubmit={(e) => loginUser(e)} className='login-form register-form' >
+				<label htmlFor="email" className='login-label'>Email</label>
                 <input
 					value={possibleUser.email}
-					onChange={(e) => updatePossibleUser(e)}
+					onChange={(e) => 
+						updatePossibleUser(e)
+					}
 					type="email"
 					placeholder="Email"
                     name="email"
+					className='login-input'
                     required
+					ref={loginRef}
 				/>
-				<br />
+				<label htmlFor="password" className='login-label' >Password</label>
 				<input
 					value={possibleUser.password}
 					onChange={(e) => updatePossibleUser(e)}
@@ -77,10 +98,14 @@ const Login = () => {
 					placeholder="Password"
                     name="password"
                     required
+					className='login-input'
+					ref={errPassword}
 				/>
-				<br />
-				<button type="submit" >login</button>
+				<button className='btn' type="submit" >login</button>
 			</form>
+
+			</article>
+			
 		</section>
 	)
 }

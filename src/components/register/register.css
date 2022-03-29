@@ -1,0 +1,28 @@
+.register-form{
+    width: 300px;
+}
+.register{
+    height: 85vh;
+}
+
+.register-intructions{
+    color: rgba(48, 43, 43, 0.747);
+    padding: .3em;
+    margin-bottom: .5em;
+    width: 180px;
+    font-size: .8em;
+    text-align: center;
+}
+
+.error-mesage{
+    color: rgba(235, 26, 26, 0.74);
+    margin-top: 1.8em;
+    padding: 10px;
+    text-align: center;
+}
+
+@media only screen and (min-width: 450px) {
+    .login-section.register{
+        height: 91.9vh;
+    }
+}

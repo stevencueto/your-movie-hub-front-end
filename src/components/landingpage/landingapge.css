@@ -1,0 +1,38 @@
+.welcome-heading{
+    text-align: center;
+    margin-top: 20vh;
+}
+
+.btn{
+    background-color: #555;
+    padding: 6px 5px;
+    width: 150px;
+    text-align: center;
+    color: aliceblue;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px auto;
+    border: none;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 57vh;
+}
+
+.register{
+    height: 81.8vh ;
+}
+
+@media only screen and (min-width: 450px) {
+    .btn-container{
+        margin-bottom: 63.7vh;
+    }
+    .register{
+        height: 83vh ;
+    }
+}
+
+

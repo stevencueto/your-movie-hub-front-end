@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState} from 'react'
 import * as jose from 'jose'
-import { useNavigate } from 'react-router-dom'
-import SingleMovie from './movies/SingleMovie'
-
+import { useNavigate, Route, Routes, Link, Navigate} from 'react-router-dom'
+import SingleMovie from './SingleMovie'
+import NewMovie from './makenewmovie/NewMovie'
+import NewMovieContainer from './ShowMovies/NewMovieContainer'
 const Dashboard = () => {
 	let navigate = useNavigate();
 	const [favoriteMovies, setFavoriteMovies] = useState([])
@@ -30,6 +31,7 @@ const Dashboard = () => {
 			})
 			const fetchMovieResponse = await movieRequest.json()
 			const newFavMovies = fetchMovieResponse.data
+			console.log(fetchMovieResponse.data, '////////////////')
 			if (fetchMovieResponse.success) {
 				setFavoriteMovies(newFavMovies)
 			} else {
@@ -39,35 +41,40 @@ const Dashboard = () => {
 			console.error(err)
 		}
 	}
-
-	useEffect(() => {
+	const verifyUser = () =>{
 		const token = localStorage.getItem('token')
-		if (token) {
+		console.log(token)
+		if (!!token) {
 			const user = jose.decodeJwt(token)
-			// console.log(user)
+			console.log(user)
 			if (!user) {
 				localStorage.removeItem('token')
 				navigate("/", { replace: true });
 			} else {
 				populateFavoriteMovies()
 			}
+		}else{
+			navigate("/", { replace: true });
 		}
-	}, [])
+	}
+	useEffect(() => {
+		verifyUser()
+	}, [favoriteMovies, ])
 
-	const makeNewFavoriteMovie = async(e) => {
-		e.preventDefault()
+	const makeNewFavoriteMovie = async() => {
 		try{
 			const newMovieReq = await fetch('http://localhost:3001/favorite-movies/', {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-				"x-access-token": localStorage.getItem('token')
-			},
-			body: JSON.stringify(newFavMovie),
-			})
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json",
+					"x-access-token": localStorage.getItem('token')
+				},
+				body: JSON.stringify(newFavMovie),
+				})
 			const newMovieRes = await newMovieReq.json()
+			console.log(newMovieRes, 'response')
 			if (newMovieRes.success) {
-				setFavoriteMovies([newFavMovie, ...favoriteMovies.data])
+				setFavoriteMovies([newFavMovie, ...favoriteMovies])
 				setNewFavMovie({
 					title: "",
 					releaseDate: "",
@@ -83,50 +90,37 @@ const Dashboard = () => {
 		}
 		
 	}
+
+	const editFavoriteMovies = ( movieToEdit) =>{
+		const newFavoriteMovies = favoriteMovies.filter((movie) => movie._id === movieToEdit.id ? movieToEdit : movie )
+		setFavoriteMovies((prev) => newFavoriteMovies)
+	}
+
 	return (
-		<>
-		<div key={"div"}>
-			<h1 key={'121212'}>Your Movies</h1>
+		<div key={'main-dashboard'}>
+			<h1 >Your Movies</h1>
 			{ favoriteMovies.map(
 				(movie, index) => {
-					return !movie ? '' : <SingleMovie key={`${movie._id}${index}`} movie={movie}></SingleMovie>
+					return !movie 
+					?
+					 '' 
+					 :
+					<>
+						<SingleMovie key={movie._id + 'qwe'} movie={movie} editFavoriteMovies={editFavoriteMovies} ></SingleMovie>
+						<Link to={`/movie/${movie._id}/`}> {movie.title} ?</Link>
+
+					</>
 				}
-				)}   
-			<form key={"form"} onSubmit={makeNewFavoriteMovie}>
-				<input
-					type="text"
-					placeholder="Movie Title"
-					value={newFavMovie.title}
-					name="title"
-					onChange={handleNewMovie}
-					required
-				/>
-				<input
-					type="text"
-					placeholder="Release Date"
-					value={newFavMovie.releaseDate}
-					name="releaseDate"
-					onChange={handleNewMovie}
-					required
-				/>
-				<textarea 
-					value={newFavMovie.summary}
-					placeholder="Summary"
-					onChange={handleNewMovie}
-					name="summary"
-				/>
-				<input
-					type="text"
-					placeholder="Image"
-					value={newFavMovie.image}
-					name="image"
-					onChange={handleNewMovie}
-					required
-				/>
-				<button type="submit">MakeNewMovie</button>
-			</form>
+				)}
+
+				{ favoriteMovies &&
+					<Routes >
+						<Route path={`:id`} element={<SingleMovie/>} />
+					</Routes> 
+				}
+
+			<NewMovieContainer  key={'NewMovieContainer-dash'} editFavoriteMovies={editFavoriteMovies}  newFavMovie={newFavMovie} handleNewMovie={handleNewMovie} makeNewFavoriteMovie={makeNewFavoriteMovie}/>
 		</div>
-		</>
 	)
 }
 

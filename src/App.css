@@ -1,38 +1,53 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+*{
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: 1;
+  font-family: 'Comfortaa', cursive;
+
+}
+::-webkit-input-placeholder {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:-moz-placeholder { /* Firefox 18- */
+  text-align: center;  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+::-moz-placeholder {  /* Firefox 19+ */
+  text-align: center;  
+}
+
+:-ms-input-placeholder {  
+  text-align: center; 
+}
+
+input{
+  text-align: center;
+}
+
+*:focus {
+  outline: none;
+}
+
+.App{
+  background-color: #f0f0f059;
+}
+@media only screen  and (min-width: 769px){
+  .home-grid{
+      display: flex;
+      justify-content: space-around;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .home-img-container{
+      width: 320px;
+      margin-top: -6vh;
+      background-image: url("./images/background-some.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
   }
-  to {
-    transform: rotate(360deg);
-  }
+  
 }

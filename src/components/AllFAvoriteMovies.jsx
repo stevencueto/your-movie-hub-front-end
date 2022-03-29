@@ -38,18 +38,17 @@ const AllMovies = () => {
 		}
 	}, [])
 
+
 		
 	return (
-		<>
 		<div key={"div"}>
 			<h1 key={'121212'}>Your Movies</h1>
 			{ favoriteMovies.map(
 				(movie, index) => {
-					return !movie ? '' : <SingleMovie key={`${movie._id}12${index}`} movie={movie}></SingleMovie>
+					return !movie ? '' : <SingleMovie key={`${movie._id}12${index}`}  movie={movie}></SingleMovie>
 				}
 				)}   
 		</div>
-		</>
 	)
 }
 
