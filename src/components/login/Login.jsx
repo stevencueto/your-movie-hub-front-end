@@ -31,7 +31,7 @@ const Login = () => {
 		console.log(e)
 		try{
 			console.log("try?")
-			const loginRequest = await fetch('http://localhost:3001/auth/login', {
+			const loginRequest = await fetch(`${process.env.SERVER_URL}/auth/login'`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

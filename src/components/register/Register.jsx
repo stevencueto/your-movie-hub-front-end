@@ -195,7 +195,7 @@ const Register = ()=> {
 				{ confirmPasswordInstruction 
 					&& 
 				<p className="register-intructions">
-                        Passwords bust Match.
+                        Passwords must Match.
 				</p>}
 				<button className='btn  blocked-element' disabled={button}> Register</button>
 			</form>
