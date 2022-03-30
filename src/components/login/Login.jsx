@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect, useRef} from 'react'
-import * as jose from 'jose'
 import { useNavigate } from 'react-router-dom'
 import './login.css'
 import Iphone from '../../Iphone'
@@ -31,7 +30,7 @@ const Login = () => {
 		console.log(e)
 		try{
 			console.log("try?")
-			const loginRequest = await fetch(`${process.env.SERVER_URL}/auth/login'`, {
+			const loginRequest = await fetch(`https://yourmoviehubapi.herokuapp.com/auth/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -74,7 +73,7 @@ const Login = () => {
 		<section className='home-grid'>
 			<Iphone/>
 			<article className='login-section page login-err'>
-			<h1>Login</h1>
+			<h1 className='heading'>Login</h1>
 			{!!errMessage && <p className='error-mesage'> {errMessage} </p>}
 			<form onSubmit={(e) => loginUser(e)} className='login-form register-form' >
 				<label htmlFor="email" className='login-label'>Email</label>

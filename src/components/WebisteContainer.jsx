@@ -7,7 +7,7 @@ import AllMovies from './AllFAvoriteMovies'
 import Header from './header/Header'
 import { useState, useEffect } from 'react'
 import Footer from './footer/Footer'
-
+import Search from './search/Search'
 const WebisteContainer = ()=> {
   const [activeMenu, setActiveMenu] = useState('menu')
   const toggleMenu = (e) =>{
@@ -28,8 +28,11 @@ const WebisteContainer = ()=> {
 					<Route path="/login" exact element={<Login/>} />
 					<Route path="/register" exact element={<Register/>} />
 					<Route path="/all" exact element={<AllMovies/>} />
-					<Route path="/movie/" exact element={<Dashboard key={'dash-in-app'}/>} />
-					{/* <Route path="*" element={<Navigate to="/movie" />}/> */}
+          <Route path='/search' exact element={<Search/>}/>
+          <Route path="/trending/" exact element={<Dashboard key={'dash-in-app'}/>} />
+          <Route path="/movie/:id" exact element={<Dashboard key={'dash-in-app'}/>} />
+
+          			{/* <Route path="*" element={<Navigate to="/movie" />}/> */}
         </Routes>
         <Footer></Footer>
     </div>

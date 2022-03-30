@@ -8,11 +8,12 @@ const AllMovies = () => {
 	const [favoriteMovies, setFavoriteMovies] = useState([])
 	const populateFavoriteMovies = async() => {
 		try{
-			const movieRequest = await fetch('http://localhost:3001/favorite-movies/', {
-			headers: {
-				'x-access-token': localStorage.getItem('token'),
-				},
-			})
+			const movieRequest = await fetch('https://yourmoviehubapi.herokuapp.com/movies/', {
+				method: "GET",
+				headers: {
+				  "Content-Type": "application/json"
+				}
+			  })
 			const fetchMovieResponse = await movieRequest.json()
 			const newFavMovies = fetchMovieResponse.data
 			if (fetchMovieResponse.success) {

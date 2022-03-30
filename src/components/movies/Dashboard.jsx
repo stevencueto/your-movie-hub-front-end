@@ -2,41 +2,27 @@ import React, { useEffect, useState} from 'react'
 import * as jose from 'jose'
 import { useNavigate, Route, Routes, Link, Navigate} from 'react-router-dom'
 import SingleMovie from './SingleMovie'
-import NewMovie from './makenewmovie/NewMovie'
-import NewMovieContainer from './ShowMovies/NewMovieContainer'
+import './ShowMovies/movies.css'
+
 const Dashboard = () => {
 	let navigate = useNavigate();
-	const [favoriteMovies, setFavoriteMovies] = useState([])
-	const [newFavMovie, setNewFavMovie] = useState({
-		title: "",
-		releaseDate: "",
-		summary: "",
-		image: ""
-	})
-	const handleNewMovie = (e) =>{
-        const {name, value, type, checked} = e.target
-		setNewFavMovie(prev => {
-            return {
-                ...prev,
-                [name]: type === "checkbox" ? checked : value
-            }
-        })		
-	}
-	const populateFavoriteMovies = async() => {
-		try{
-			const movieRequest = await fetch('http://localhost:3001/favorite-movies/user', {
-			headers: {
-				'x-access-token': localStorage.getItem('token'),
-				},
-			})
-			const fetchMovieResponse = await movieRequest.json()
-			const newFavMovies = fetchMovieResponse.data
-			console.log(fetchMovieResponse.data, '////////////////')
-			if (fetchMovieResponse.success) {
-				setFavoriteMovies(newFavMovies)
-			} else {
-				alert(fetchMovieResponse.data)
-			}
+	const [trendingMovies, setTrendingMovies] = useState([])
+	const populateTrendingMovies = async() => {
+		const oldTrending = localStorage.getItem('trending');
+		if(localStorage.getItem('trending')) return setTrendingMovies(JSON.parse(oldTrending));
+			try{
+				const movieRequest = await fetch('https://yourmoviehubapi.herokuapp.com/movies/top-rated/', {
+					method: "GET",
+					headers: {
+					  "Content-Type": "application/json"
+					}
+				  })
+				const fetchMovieResponse = await movieRequest.json()
+				const newTrendingMovie = fetchMovieResponse.data
+			if(newTrendingMovie){
+					localStorage.setItem('trending', JSON.stringify(newTrendingMovie));
+					setTrendingMovies(newTrendingMovie);
+				  };
 		}catch(err){
 			console.error(err)
 		}
@@ -51,7 +37,7 @@ const Dashboard = () => {
 				localStorage.removeItem('token')
 				navigate("/", { replace: true });
 			} else {
-				populateFavoriteMovies()
+				populateTrendingMovies()
 			}
 		}else{
 			navigate("/", { replace: true });
@@ -59,68 +45,17 @@ const Dashboard = () => {
 	}
 	useEffect(() => {
 		verifyUser()
-	}, [favoriteMovies, ])
-
-	const makeNewFavoriteMovie = async() => {
-		try{
-			const newMovieReq = await fetch('http://localhost:3001/favorite-movies/', {
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json",
-					"x-access-token": localStorage.getItem('token')
-				},
-				body: JSON.stringify(newFavMovie),
-				})
-			const newMovieRes = await newMovieReq.json()
-			console.log(newMovieRes, 'response')
-			if (newMovieRes.success) {
-				setFavoriteMovies([newFavMovie, ...favoriteMovies])
-				setNewFavMovie({
-					title: "",
-					releaseDate: "",
-					summary: "",
-					image: ""
-				})
-			} else {
-				alert(newMovieRes.data)
-			}
-		}catch(err){
-			console.error(err)
-			alert("Server is down")
-		}
-		
-	}
-
-	const editFavoriteMovies = ( movieToEdit) =>{
-		const newFavoriteMovies = favoriteMovies.filter((movie) => movie._id === movieToEdit.id ? movieToEdit : movie )
-		setFavoriteMovies((prev) => newFavoriteMovies)
-	}
-
+	}, [])
 	return (
-		<div key={'main-dashboard'}>
-			<h1 >Your Movies</h1>
-			{ favoriteMovies.map(
-				(movie, index) => {
-					return !movie 
-					?
-					 '' 
-					 :
-					<>
-						<SingleMovie key={movie._id + 'qwe'} movie={movie} editFavoriteMovies={editFavoriteMovies} ></SingleMovie>
-						<Link to={`/movie/${movie._id}/`}> {movie.title} ?</Link>
+		<main className="wrapper" key={'main-dashboard'} >
+			<h1 className='center-title'>Trending Movies</h1>
+			<section className='movie-grid'>
+				{ trendingMovies && trendingMovies.map( (movie, index) => { return <SingleMovie key={movie.id} movie={movie} > </SingleMovie> })}
+			</section>
 
-					</>
-				}
-				)}
 
-				{ favoriteMovies &&
-					<Routes >
-						<Route path={`:id`} element={<SingleMovie/>} />
-					</Routes> 
-				}
 
-			<NewMovieContainer  key={'NewMovieContainer-dash'} editFavoriteMovies={editFavoriteMovies}  newFavMovie={newFavMovie} handleNewMovie={handleNewMovie} makeNewFavoriteMovie={makeNewFavoriteMovie}/>
-		</div>
+		</main>
 	)
 }
 

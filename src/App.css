@@ -6,7 +6,7 @@
   box-sizing: border-box;
   z-index: 1;
   font-family: 'Comfortaa', cursive;
-
+  color: white;
 }
 ::-webkit-input-placeholder {
   text-align: center;
@@ -23,17 +23,21 @@
 :-ms-input-placeholder {  
   text-align: center; 
 }
-
+html{
+  background-color: #0e0e0e;
+}
 input{
   text-align: center;
 }
-
+body{
+  max-width: 1400px;
+}
 *:focus {
   outline: none;
 }
 
 .App{
-  background-color: #f0f0f059;
+  background-color: #0e0e0e;
 }
 @media only screen  and (min-width: 769px){
   .home-grid{
@@ -50,4 +54,13 @@ input{
       background-repeat: no-repeat;
   }
   
+}
+
+.heading{
+  font-size: 2em;
+  margin-top: -9vh;
+}
+
+.wrapper{
+  background-color: #0e0e0e;
 }

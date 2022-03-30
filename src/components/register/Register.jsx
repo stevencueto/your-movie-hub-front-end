@@ -67,7 +67,7 @@ const Register = ()=> {
 		}
 		e.preventDefault();
 		try{
-			const userRequest = await fetch('http://localhost:3001/auth/register', {
+			const userRequest = await fetch('https://yourmoviehubapi.herokuapp.com/auth/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const Register = ()=> {
 		<section className='home-grid'>
 			<Iphone/>
 			<article className="login-section register">
-			<h1>Register</h1>
+			<h1 className='heading'>Register</h1>
 
 
 				{ errMessage && <p className='error-mesage'>

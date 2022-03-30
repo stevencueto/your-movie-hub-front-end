@@ -6,7 +6,7 @@ function Home() {
   return (
     <section className='home-grid'>
       <Iphone/>
-      <article>
+      <article className='lading-page'>
       <h1 className='welcome-heading'>
             Welcome
         </h1>
