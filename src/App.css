@@ -6,7 +6,7 @@
   box-sizing: border-box;
   z-index: 1;
   font-family: 'Comfortaa', cursive;
-  color: white;
+  color: #FFFFFF;
 }
 ::-webkit-input-placeholder {
   text-align: center;
@@ -24,10 +24,11 @@
   text-align: center; 
 }
 html{
-  background-color: #0e0e0e;
+  background-color: #2D2D2D;
 }
 input{
   text-align: center;
+  color: #0e0e0e;
 }
 body{
   max-width: 1400px;
@@ -36,9 +37,6 @@ body{
   outline: none;
 }
 
-.App{
-  background-color: #0e0e0e;
-}
 @media only screen  and (min-width: 769px){
   .home-grid{
       display: flex;
@@ -59,8 +57,4 @@ body{
 .heading{
   font-size: 2em;
   margin-top: -9vh;
-}
-
-.wrapper{
-  background-color: #0e0e0e;
 }

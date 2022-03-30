@@ -18,7 +18,7 @@ const Header  = (props) => {
         <Link className="links" to="/">Home</Link>
         {/* <Link className="links" to="/favorite-movies">Liked Movies</Link> */}
         <Link className="links" to="/search">Search</Link>
-        { localStorage.getItem('token') ? <Link className="links" to='/' onClick={() => {localStorage.removeItem('token')}}>Logout</Link> : <Link className="links" to='/login'>Login</Link>}
+        { localStorage.getItem('token') ? <Link className="links" to='/' onClick={() => {localStorage.clear()}}>Logout</Link> : <Link className="links" to='/login'>Login</Link>}
         <Link className="links" to="/register">Register</Link>
 
       </nav>

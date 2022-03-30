@@ -77,7 +77,6 @@ const Register = ()=> {
 			const fetchedUser = await userRequest.json();
 			if (fetchedUser.success) {
 				localStorage.setItem('token', fetchedUser.data);
-				
 				navigate("/movies", { replace: true })
 			} else{
 				if(fetchedUser.data === "User Already Exist!" ){
@@ -142,9 +141,9 @@ const Register = ()=> {
 				{ userInstructions 
 						&& 
 				<ol className="register-intructions">
-					<li>	Must be 6 to 24 characters.</li>
-					<li>Must begin with a letter.</li>
-					<li>all characters are okay.</li>
+					<li className="register-intructions">	Must be 6 to 24 characters.</li>
+					<li className="register-intructions">Must begin with a letter.</li>
+					<li className="register-intructions">all characters are okay.</li>
 				</ol>
 				}
 				<input
@@ -176,9 +175,9 @@ const Register = ()=> {
 				{ passwordInstructions 
 					&& 
 				<ol className="register-intructions">
-                        <li>	Password bust be 8 to 24 characters.</li>
-						<li> Must include uppercase and lowercase letters, a number and a special character.</li>
-						<li> Allowed special characters are: <span className='special-charachter'>! @ # $ %</span></li>
+                        <li className="register-intructions">	Password bust be 8 to 24 characters.</li>
+						<li className="register-intructions"> Must include uppercase and lowercase letters, a number and a special character.</li>
+						<li className="register-intructions"> Allowed special characters are: <span className='special-charachter'>! @ # $ %</span></li>
 				</ol>}
 				<input
 					value={newUser.confirmPassword}
