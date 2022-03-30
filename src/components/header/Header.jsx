@@ -3,17 +3,16 @@ import {Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 const Header  = (props) => {
   const [isLogged, setIsLogged] = useState(false)
-  const logged = localStorage.getItem('token')
-
   const toggleBtn = () =>{
+    const logged = localStorage.getItem('token')
     if(!!logged){
       return setIsLogged(true)
     }
     setIsLogged(false)
   }
-  useEffect(()=>{
+  window.addEventListener("storage",(e) => {
     toggleBtn()
-  }, [])
+ });
   return (
     <>
     <header className='header'>
