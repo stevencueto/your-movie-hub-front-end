@@ -1,7 +1,6 @@
 import './header.css'
 import {Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-
 const Header  = (props) => {
   const [isLogged, setIsLogged] = useState(false)
   const logged = localStorage.getItem('token')
@@ -14,7 +13,7 @@ const Header  = (props) => {
   }
   useEffect(()=>{
     toggleBtn()
-  }, [logged, isLogged])
+  }, [])
   return (
     <>
     <header className='header'>
@@ -30,7 +29,7 @@ const Header  = (props) => {
         <Link className="links" to="/">Home</Link>
         {/* <Link className="links" to="/favorite-movies">Liked Movies</Link> */}
         <Link className="links" to="/search">Search</Link>
-        { isLogged ? <Link className="links" to='/' onClick={() => {localStorage.clear(); setIsLogged(false)}}>Logout</Link> : <Link className="links" to='/login'>Login</Link>}
+        { isLogged ? <p className="links" to='/' onClick={() => {localStorage.clear(); setIsLogged(false)}}>Logout</p> : <Link className="links" to='/login'>Login</Link>}
         <Link className="links" to="/register">Register</Link>
 
       </nav>
