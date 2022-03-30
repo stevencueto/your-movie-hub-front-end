@@ -29,6 +29,7 @@ const Register = ()=> {
                 ...newUser,
                 [name]: value
             })
+			console.log(newUser)
     }
 
 	const comparePassword = () =>{
@@ -85,10 +86,13 @@ const Register = ()=> {
 				}else if (fetchedUser.data === "Email In Use!" ){
 					setErrMessage(fetchedUser.data);
 					emailRef.current.focus();
+				}else{
+					setErrMessage(fetchedUser.data);
+					emailRef.current.focus();
 				}
 			}
 		}catch(err){
-			console.log(err.message);
+			console.log(err);
 		}
 		
 	};
