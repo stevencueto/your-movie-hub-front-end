@@ -9,8 +9,6 @@ const Dashboard = () => {
 	const [trendingMovies, setTrendingMovies] = useState([])
 	const [pages, setPages] = useState(1)
 	const populateTrendingMovies = async() => {
-		// const oldTrending = localStorage.getItem('trending');
-		// if(localStorage.getItem('trending')) return setTrendingMovies(JSON.parse(oldTrending));
 			try{
 				const movieRequest = await fetch('https://yourmoviehubapi.herokuapp.com/movies/trending', {
 					method: "GET",
@@ -21,7 +19,6 @@ const Dashboard = () => {
 				const fetchMovieResponse = await movieRequest.json()
 				const newTrendingMovie = fetchMovieResponse.data
 			if(newTrendingMovie.results){
-				localStorage.setItem('trending', JSON.stringify(newTrendingMovie.results));
 				setTrendingMovies(newTrendingMovie.results);
 				};
 		}catch(err){

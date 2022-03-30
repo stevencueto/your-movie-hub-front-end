@@ -20,16 +20,14 @@ const Login = () => {
         setPossibleUser(prev => {
             return {
                 ...prev,
-                [name]: type === "checkbox" ? checked : value
+                [name]: value
             }
         })
     }
 
 	const loginUser = async(e) => {
 		e.preventDefault()
-		console.log(e)
 		try{
-			console.log("try?")
 			const loginRequest = await fetch(`https://yourmoviehubapi.herokuapp.com/auth/login`, {
 				method: 'POST',
 				headers: {
@@ -39,7 +37,6 @@ const Login = () => {
 				body: JSON.stringify(possibleUser),
 			})
 			const loginResponse = await loginRequest.json()
-			console.log(loginResponse.success, "---")
 			if (loginResponse.success) {
 				localStorage.setItem('token', loginResponse.data)
 				setPossibleUser({

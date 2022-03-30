@@ -54,4 +54,11 @@ body{
   }
   
 }
-
+.description-box{
+  width: 230px;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 3px;
+  height: 80px;
+  color: black;
+}

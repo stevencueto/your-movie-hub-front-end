@@ -29,7 +29,6 @@ const Register = ()=> {
                 ...newUser,
                 [name]: value
             })
-			console.log(newUser)
     }
 
 	const comparePassword = () =>{

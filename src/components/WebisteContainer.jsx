@@ -1,4 +1,4 @@
-import {Route, Routes } from 'react-router-dom'
+import {Route, Routes, useNavigate } from 'react-router-dom'
 import Login from './login/Login'
 import Register from './register/Register'
 import Dashboard from './movies/Dashboard'
@@ -8,8 +8,56 @@ import Header from './header/Header'
 import { useState, useEffect } from 'react'
 import Footer from './footer/Footer'
 import Search from './search/Search'
-const WebisteContainer = ()=> {
+import NewPlaylists from './playlist/NewPlaylists'
 
+
+const WebisteContainer = ()=> {
+  const [errMessage, setErrMessage] = useState("")
+	let navigate = useNavigate();
+
+  const [newPlaylist , setNewPlaylist] = useState(
+    {
+      name: "",
+      description: ""
+    }
+  )
+
+  const handleNewPlaylist = (e) => {
+    const {name, value } = e.target;
+    setNewPlaylist(prev => {
+      return {
+          ...prev,
+          [name]: value
+      }
+    })
+  }
+
+  const newPlaylistReq = async (e)  => {
+    e.preventDefault()
+    try{
+        const request = await fetch(`https://yourmoviehubapi.herokuapp.com/playlist/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-access-token': localStorage.getItem('token'),
+            },
+            body: JSON.stringify(newPlaylist),
+        })
+        const response = await request.json()
+        if (response.success) {
+            setNewPlaylist({
+                name: "",
+                description: ""
+              })
+            console.log(response.data)
+            window.location.reload(false);
+            // navigate("/", { replace: true });
+        } 
+            setErrMessage(response.data)
+    }catch(err){
+        console.log(err)       
+    }
+}
   const [activeMenu, setActiveMenu] = useState('menu')
   const toggleMenu = (e) =>{
     if(e.target.closest('.toggle-button')){
@@ -31,6 +79,7 @@ const WebisteContainer = ()=> {
 					<Route path="/all" exact element={<AllMovies/>} />
           <Route path='/search' exact element={<Search/>}/>
           <Route path="/trending/" exact element={<Dashboard key={'dash-in-app'}/>} />
+          <Route path="/new-playlist/" exact element={<NewPlaylists newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage}/>} />
           <Route path="/movie/:id" exact element={<Dashboard key={'dash-in-app'}/>} />
 
           			{/* <Route path="*" element={<Navigate to="/movie" />}/> */}
