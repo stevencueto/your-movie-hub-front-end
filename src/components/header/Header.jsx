@@ -3,8 +3,8 @@ import {Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 const Header  = (props) => {
-  const logged = localStorage.getItem('token')
   const [isLogged, setLogged] = useState(false)
+  const logged = localStorage.getItem('token')
 
   const toggleBtn = () =>{
     if(!!logged){
@@ -30,7 +30,7 @@ const Header  = (props) => {
         <Link className="links" to="/">Home</Link>
         {/* <Link className="links" to="/favorite-movies">Liked Movies</Link> */}
         <Link className="links" to="/search">Search</Link>
-        { !!isLogged ? <Link className="links" to='/' onClick={() => {localStorage.clear()}}>Logout</Link> : <Link className="links" to='/login'>Login</Link>}
+        { isLogged ? <Link className="links" to='/' onClick={() => {localStorage.clear(); toggleBtn()}}>Logout</Link> : <Link className="links" to='/login'>Login</Link>}
         <Link className="links" to="/register">Register</Link>
 
       </nav>
