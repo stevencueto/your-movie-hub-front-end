@@ -13,6 +13,10 @@ const Header  = (props) => {
   window.addEventListener("storage",(e) => {
     toggleBtn()
  });
+
+ useEffect(()=>{
+  toggleBtn()
+ }, [])
   return (
     <>
     <header className='header'>
