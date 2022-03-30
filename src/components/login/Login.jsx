@@ -47,6 +47,7 @@ const Login = () => {
 					password: ''
 				})
 				alert('Login successful')
+				window.location.reload(false);
 				navigate("/", { replace: true });
 			} else if(loginResponse.data === "Wrong Password"){
 				setErrMessage("Sorry, your password was incorrect. Please double-check your password.")

@@ -78,6 +78,7 @@ const Register = ()=> {
 			const fetchedUser = await userRequest.json();
 			if (fetchedUser.success) {
 				localStorage.setItem('token', fetchedUser.data);
+				window.location.reload(false);
 				navigate("/movies", { replace: true })
 			} else{
 				if(fetchedUser.data === "User Already Exist!" ){
