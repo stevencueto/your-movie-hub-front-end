@@ -20,7 +20,7 @@ const Search = () => {
         page: searchPage
       }
         try {
-          const searchRequest = await fetch('http://localhost:3001/movies/search/', {
+          const searchRequest = await fetch('https://yourmoviehubapi.herokuapp.com/movies/search', {
           method: "POST",
           body: JSON.stringify(toSend),
           headers: {
@@ -38,7 +38,7 @@ const Search = () => {
               setErrMessage(searchResults)
             }
         } catch (err) {
-          console.error(err, 'errr')
+          console.log(err, 'errr')
           setErrMessage('Internal Server Error')
         }
       }
