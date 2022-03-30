@@ -7,7 +7,9 @@ const Header  = (props) => {
   const [isLogged, setLogged] = useState(false)
 
   const toggleBtn = () =>{
-    if(logged)return setLogged(true)
+    if(!!logged){
+      return setLogged(true)
+    }
     setLogged(false)
   }
   useEffect(()=>{
@@ -28,7 +30,7 @@ const Header  = (props) => {
         <Link className="links" to="/">Home</Link>
         {/* <Link className="links" to="/favorite-movies">Liked Movies</Link> */}
         <Link className="links" to="/search">Search</Link>
-        { isLogged ? <Link className="links" to='/' onClick={() => {localStorage.clear()}}>Logout</Link> : <Link className="links" to='/login'>Login</Link>}
+        { !!isLogged ? <Link className="links" to='/' onClick={() => {localStorage.clear()}}>Logout</Link> : <Link className="links" to='/login'>Login</Link>}
         <Link className="links" to="/register">Register</Link>
 
       </nav>
