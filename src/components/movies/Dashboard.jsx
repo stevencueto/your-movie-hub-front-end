@@ -7,11 +7,12 @@ import './ShowMovies/movies.css'
 const Dashboard = () => {
 	let navigate = useNavigate();
 	const [trendingMovies, setTrendingMovies] = useState([])
+	const [pages, setPages] = useState(1)
 	const populateTrendingMovies = async() => {
-		const oldTrending = localStorage.getItem('trending');
-		if(localStorage.getItem('trending')) return setTrendingMovies(JSON.parse(oldTrending));
+		// const oldTrending = localStorage.getItem('trending');
+		// if(localStorage.getItem('trending')) return setTrendingMovies(JSON.parse(oldTrending));
 			try{
-				const movieRequest = await fetch('https://yourmoviehubapi.herokuapp.com/movies/top-rated/', {
+				const movieRequest = await fetch('https://yourmoviehubapi.herokuapp.com/movies/trending', {
 					method: "GET",
 					headers: {
 					  "Content-Type": "application/json"
@@ -19,20 +20,18 @@ const Dashboard = () => {
 				  })
 				const fetchMovieResponse = await movieRequest.json()
 				const newTrendingMovie = fetchMovieResponse.data
-			if(newTrendingMovie){
-					localStorage.setItem('trending', JSON.stringify(newTrendingMovie));
-					setTrendingMovies(newTrendingMovie);
-				  };
+			if(newTrendingMovie.results){
+				localStorage.setItem('trending', JSON.stringify(newTrendingMovie.results));
+				setTrendingMovies(newTrendingMovie.results);
+				};
 		}catch(err){
 			console.error(err)
 		}
 	}
 	const verifyUser = () =>{
 		const token = localStorage.getItem('token')
-		console.log(token)
 		if (!!token) {
 			const user = jose.decodeJwt(token)
-			console.log(user)
 			if (!user) {
 				localStorage.removeItem('token')
 				navigate("/", { replace: true });
@@ -52,7 +51,6 @@ const Dashboard = () => {
 			<section className='movie-grid'>
 				{ trendingMovies && trendingMovies.map( (movie, index) => { return <SingleMovie key={movie.id} movie={movie} > </SingleMovie> })}
 			</section>
-
 
 
 		</main>

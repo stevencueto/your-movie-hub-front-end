@@ -127,7 +127,7 @@
 @media only screen and (min-width: 768px) {
     .menu.active{
         height: auto;
-        width: 400px;
+        max-width:600px;
         top: auto;
         right: auto;
         position: static;
@@ -141,7 +141,7 @@
     .menu{
         transform: translateY(0);
         opacity: 1;
-        width: 400px;
+        max-width: 600px;
         position: static;
         height: auto;
         top: auto;
@@ -151,12 +151,11 @@
     }
     .link{
         font-size: 1.3em;
-        width: 30px;
+        max-width: 100px;
         line-height: auto;
         padding: 3px;
         display: inline;
-        width: auto;
-
+        white-space: nowrap;
     }
     .toggle-button{
         display: none;
@@ -165,6 +164,6 @@
         /* I know this looks weird but trust me it works lol */
         min-width: auto;
         width: 100%;
-        max-width: 1400px;
+        max-width: 1600px;
     }
 }

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const NewMovie = (props) => {
   return (
-    <div key={'make-new-movie-key'} >
+    <div >
         <Outlet/>
         <form  onSubmit={
             (e) =>{

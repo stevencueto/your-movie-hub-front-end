@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import Footer from './footer/Footer'
 import Search from './search/Search'
 const WebisteContainer = ()=> {
+
   const [activeMenu, setActiveMenu] = useState('menu')
   const toggleMenu = (e) =>{
     if(e.target.closest('.toggle-button')){
@@ -21,7 +22,7 @@ const WebisteContainer = ()=> {
     setActiveMenu('menu')
   }, [])
   return (
-    <div onClick={toggleMenu}>
+    <div onClick={toggleMenu} id="website-container">
         <Header activeMenu={activeMenu}></Header>
         <Routes>
 					<Route path="/" exact element={<Home/>} />

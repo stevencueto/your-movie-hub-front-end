@@ -1,6 +1,16 @@
 import './header.css'
 import {Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+
+
+function useForceUpdate(){
+  const [value, setValue] = useState(); // integer state
+  return () => setValue(value => value + 1); // update the state to force render
+}
+
+
+
+
 const Header  = (props) => {
   const [isLogged, setIsLogged] = useState(false)
   const toggleBtn = () =>{
@@ -32,8 +42,11 @@ const Header  = (props) => {
         <Link className="links" to="/">Home</Link>
         {/* <Link className="links" to="/favorite-movies">Liked Movies</Link> */}
         <Link className="links" to="/search">Search</Link>
+        <Link className="links" to="/trending">Trending</Link>
+
         { isLogged ? <p className="links" to='/' onClick={() => {localStorage.clear(); setIsLogged(false)}}>Logout</p> : <Link className="links" to='/login'>Login</Link>}
-        <Link className="links" to="/register">Register</Link>
+        { !isLogged && <Link className="links" to="/register">Register</Link>}
+
 
       </nav>
     </header>

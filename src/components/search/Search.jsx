@@ -3,21 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import SingleMovie from '../movies/SingleMovie'
 import '../movies/ShowMovies/movies.css'
 
+
 const Search = () => {
 	let navigate = useNavigate();
     const [search, setSearch] = useState('')
     const searchRef = useRef(true)
     const [searchMovies, setSearchMovies] = useState([])
-    const [searchPage, setSearchPage] = useState(1)
+    const [page, setPage] = useState(1)
     const [errMessage, setErrMessage] = useState("")
+
     const searchMovie = async (term) =>{
-      console.log(search, term)
-      let isItIn = localStorage.getItem(term)
-      console.table(JSON.parse(isItIn))
-      if(isItIn) return setSearchMovies(JSON.parse(isItIn));
       const toSend = {
         term : term,
-        page: searchPage
+        page: page
       }
         try {
           const searchRequest = await fetch('https://yourmoviehubapi.herokuapp.com/movies/search', {
@@ -30,12 +28,9 @@ const Search = () => {
             const searchResponse = await searchRequest.json();
             const searchResults = searchResponse.data
               if(searchResponse.success){
-              localStorage.setItem(search, JSON.stringify(searchResults.results));
               setSearchMovies(searchResults.results)
+              setPage(searchResponse.totalPages)
               setErrMessage('')
-              console.table(searchResults.results)
-            }else{
-              setErrMessage(searchResults)
             }
         } catch (err) {
           console.log(err, 'errr')
