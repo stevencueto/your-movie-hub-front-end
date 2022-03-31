@@ -1,9 +1,20 @@
-
+import { Modal, Button } from "react-bootstrap"
+import { useState } from "react"
 const NewPlaylists = (props) => {
-
-  return (
+	const [fullscreen, setFullscreen] = useState(true);
+	const [show, setShow] = useState(false);
+  
+	return (
     <section>
-        <form className="login-form register-form"onSubmit={(e)=> props.newPlaylistReq(e)}>
+			<Button key='idx'  className="btn display-block" onClick={() => setShow(true)}>
+			Make New Playlist?
+			</Button>
+		<Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+			<Modal.Header className="display-flex">
+			<Modal.Title id="ok-margin"> <Button onClick={()=> {setShow(true); setShow(false)}}>Close</Button>	</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+			<form className="login-form register-form"onSubmit={(e)=> props.newPlaylistReq(e)}>
 				<input
 					value={props.newPlaylist.name}
 					onChange={(e)=> props.handleNewPlaylist(e)}
@@ -25,7 +36,8 @@ const NewPlaylists = (props) => {
 				<br />
 				<button className='btn  blocked-element' >Make New Playlist</button>
 			</form>
-
+			</Modal.Body>
+		</Modal>
     </section>
   )
 }
