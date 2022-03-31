@@ -24,13 +24,13 @@ const WebisteContainer = ()=> {
       })
       const response = await request.json()
       if (response.success) {
-          console.log(response.data, "data")
-          // navigate("/", { replace: true });
+          setAllMyPlaylists(response.data)
       }else{
         setErrMessage(response.data)
       } 
     }catch(err){
-        console.log(err)       
+        console.log(err)
+        setErrMessage("server error")     
     }
   }
 
@@ -105,7 +105,7 @@ const WebisteContainer = ()=> {
 					<Route path="/all" exact element={<AllMovies/>} />
           <Route path='/search' exact element={<Search/>}/>
           <Route path="/trending/" exact element={<Dashboard key={'dash-in-app'}/>} />
-          <Route path="/playlist/" exact element={<Playlists newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage}/>} />
+          <Route path="/playlist/" exact element={<Playlists newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage} allMyPlaylists={allMyPlaylists}/>} />
           <Route path="/movie/:id" exact element={<Dashboard key={'dash-in-app'}/>} />
 
           			{/* <Route path="*" element={<Navigate to="/movie" />}/> */}

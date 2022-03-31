@@ -3,10 +3,11 @@ import * as jose from 'jose'
 import { useNavigate} from 'react-router-dom'
 import SingleMovie from './SingleMovie'
 import './ShowMovies/movies.css'
-import PageButton from '../PageButton'
+import PageButton from './PageButton'
+import MovieGrid from './MovieGrid'
 const Dashboard = () => {
 	let navigate = useNavigate();
-	const [trendingMovies, setTrendingMovies] = useState([])
+	const [movies, setMovies] = useState([])
 	const [pages, setPages] = useState([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const makePages = (page) =>{
@@ -21,7 +22,7 @@ const Dashboard = () => {
 		setPages(newPages)
 		console.log(pages)
 	}
-	const populateTrendingMovies = async(page = 1) => {
+	const populateFunction = async(page = 1) => {
 			try{
 				const movieRequest = await fetch(`https://yourmoviehubapi.herokuapp.com/movies/trending/${page}`, {
 					method: "GET",
@@ -34,7 +35,7 @@ const Dashboard = () => {
 			if(newTrendingMovie.results){
 				console.log(newTrendingMovie.page)
 				setCurrentPage(newTrendingMovie.page)
-				setTrendingMovies(newTrendingMovie.results);
+				setMovies(newTrendingMovie.results);
 				makePages(newTrendingMovie?.total_pages)
 				};
 		}catch(err){
@@ -49,7 +50,7 @@ const Dashboard = () => {
 				localStorage.removeItem('token')
 				navigate("/", { replace: true });
 			} else {
-				populateTrendingMovies()
+				populateFunction()
 			}
 		}else{
 			navigate("/", { replace: true });
@@ -64,10 +65,8 @@ const Dashboard = () => {
 	return (
 		<main className="wrapper" key={'main-dashboard'} >
 			<h1 className='center-title'>Trending Movies</h1>
-			<section className='movie-grid'>
-				{ trendingMovies && trendingMovies.map( (movie, index) => { return <SingleMovie key={movie.id} movie={movie} > </SingleMovie> })}
-			</section>
-			<PageButton pages={pages} populateTrendingMovies={populateTrendingMovies}></PageButton>
+			<MovieGrid movies={movies}></MovieGrid>
+			<PageButton pages={pages} populateFunction={populateFunction}></PageButton>
 		</main>
 	)
 }

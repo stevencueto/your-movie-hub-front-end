@@ -32,17 +32,9 @@
     margin: 2vh auto;
 
 } 
-.page{
-    height: 84.8vh;
-}
 .login-err{
     max-width: 440px;
 
-}
-@media only screen and (min-width: 450px) {
-    .page{
-        height: 91.9vh;
-    }
 }
 /* .login-form label{ 
     display: block;

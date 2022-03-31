@@ -1,8 +1,10 @@
 import React from 'react'
 
-const ImageDescription = (props) => {
+const MovieInformation = (props) => {
   return (
-    <div>ImageDescription</div>
+    <div>
+      
+    </div>
   )
 }
 

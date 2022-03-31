@@ -43,7 +43,7 @@ const Header  = (props) => {
         {/* <Link className="links" to="/favorite-movies">Liked Movies</Link> */}
         <Link className="links" to="/search">Search</Link>
         <Link className="links" to="/trending">Trending</Link>
-        <Link className="links" to="/new-playlist/">Playlists</Link>
+        <Link className="links" to="/playlist/">Playlists</Link>
 
         { isLogged ? <p className="links" to='/' onClick={() => {localStorage.clear(); setIsLogged(false)}}>Logout</p> : <Link className="links" to='/login'>Login</Link>}
         { !isLogged && <Link className="links" to="/register">Register</Link>}

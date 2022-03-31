@@ -11,7 +11,7 @@ function Home() {
 		if (token) navigate("/trending", { replace: true });
 	}, [])
   return (
-    <section className='home-grid'>
+    <section className='home-grid website-container'>
       <Iphone/>
       <article className='lading-page'>
       <h1 className='welcome-heading'>

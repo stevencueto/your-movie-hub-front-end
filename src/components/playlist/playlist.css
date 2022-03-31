@@ -1,0 +1,5 @@
+.playlist-flex{
+    height: 300px;
+    display: flex;
+    overflow-y: scroll;
+}

@@ -1,6 +1,6 @@
 .welcome-heading{
     text-align: center;
-    margin-top: 20vh;
+    padding-top: 20vh;
 }
 
 .btn{
@@ -19,24 +19,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 57vh;
 }
 
-.register{
-    height: 81.8vh ;
-}
 .welcome-heading{
     padding-bottom: 4vh;
     font-size: 2.5em;
 }
 
-@media only screen and (min-width: 450px) {
-    .btn-container{
-        margin-bottom: 63.7vh;
-    }
-    .register{
-        height: 83vh ;
-    }
-}
 
 

@@ -117,9 +117,9 @@ const Register = ()=> {
 	
 
 	return (
-		<section className='home-grid'>
+		<section className='home-grid website-container'>
 			<Iphone/>
-			<article className="login-section register">
+			<article className="login-section">
 			<h1 className='heading'>Register</h1>
 
 

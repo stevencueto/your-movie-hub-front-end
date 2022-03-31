@@ -68,7 +68,7 @@ const Login = () => {
 	
 
 	return (
-		<section className='home-grid'>
+		<section className='home-grid website-container'>
 			<Iphone/>
 			<article className='login-section page login-err'>
 			<h1 className='heading'>Login</h1>

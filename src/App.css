@@ -36,12 +36,11 @@ body{
 *:focus {
   outline: none;
 }
-
-
 @media only screen  and (min-width: 769px){
   .home-grid{
       display: flex;
       justify-content: space-around;
+      min-height: 80vh;
   }
 
   .home-img-container{
@@ -52,7 +51,9 @@ body{
       background-size: contain;
       background-repeat: no-repeat;
   }
-  
+  .website-container{
+    min-height: 96.5vh;
+  }
 }
 .description-box{
   width: 230px;
@@ -61,4 +62,11 @@ body{
   padding: 3px;
   height: 80px;
   color: black;
+}
+.website-link{
+  text-decoration: none;
+}
+
+.website-container{
+  min-height: 72vh;
 }
