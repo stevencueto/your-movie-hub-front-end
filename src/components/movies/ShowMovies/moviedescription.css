@@ -19,7 +19,7 @@
 
 
 .movie-poster{
-    width: 100vh;
+    width: 100vw;
     margin-top: -30px;
     border-radius: 5px;
     /* clip-path: polygon(0% 0%, 0% 100%, 5% 100%, 5% 5%, 95% 5%, 95% 95%, 5% 95%, 5% 100%, 100% 100%, 100% 0%); */
@@ -43,11 +43,12 @@
 
 @media only screen and (min-width: 902px) {
     .movie-poster{
-        display: none;
+        /* display: none; */
+        max-width: 1600px;
     }
     .poster-large-screens{
         padding-top: 30px;
-        display: block;
+        /* display: block; */
         height: 1600px;
         background-position: center center;
         background-size: cover;
