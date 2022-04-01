@@ -4,7 +4,6 @@
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  z-index: 1;
   font-family: 'Comfortaa', cursive;
   color: #FFFFFF;
 }
@@ -24,7 +23,7 @@
   text-align: center; 
 }
 html{
-  background-color: #2D2D2D;
+  background-color: #000000;
 }
 input{
   text-align: center;
@@ -37,6 +36,9 @@ body{
   outline: none;
 }
 @media only screen  and (min-width: 769px){
+  html{
+    background-color: #2D2D2D;
+  }
   .home-grid{
       display: flex;
       justify-content: space-around;

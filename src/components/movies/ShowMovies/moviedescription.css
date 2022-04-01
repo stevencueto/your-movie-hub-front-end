@@ -1,0 +1,19 @@
+.movie-header{
+    height: 60vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: -10px;
+}
+
+.movie-detail{
+    height: 300vh ;
+}
+
+.movie-name{
+    padding-top: 400px;
+    text-align: center;
+}
+.float-page{
+    position: absolute;
+    z-index: 2;
+}

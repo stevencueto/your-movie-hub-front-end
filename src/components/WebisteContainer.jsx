@@ -1,16 +1,24 @@
-import {Route, Routes, useNavigate } from 'react-router-dom'
+import {Route, Routes, useNavigate, useLocation } from 'react-router-dom'
 import Login from './login/Login'
 import Register from './register/Register'
 import Dashboard from './movies/Dashboard'
 import Home from './landingpage/LandingPage'
 import AllMovies from './AllFAvoriteMovies'
 import Header from './header/Header'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from './footer/Footer'
 import Search from './search/Search'
 import Playlists from './playlist/Playlists'
+import MovieDescription from './movies/ShowMovies/MovieDescription'
 
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 const WebisteContainer = ()=> {
+  let query = useQuery();
+
   const [allMyPlaylists, setAllMyPlaylists] = useState([])
   const getPlaylists = async() =>{
     if(!localStorage.getItem('token')) return 
@@ -106,7 +114,8 @@ const WebisteContainer = ()=> {
           <Route path='/search' exact element={<Search/>}/>
           <Route path="/trending/" exact element={<Dashboard key={'dash-in-app'}/>} />
           <Route path="/playlist/" exact element={<Playlists newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage} allMyPlaylists={allMyPlaylists}/>} />
-          <Route path="/movie/:id" exact element={<Dashboard key={'dash-in-app'}/>} />
+          <Route path="/movie/:id" exact element={<MovieDescription name={query.get("movie")}></MovieDescription>} />
+          
 
           			{/* <Route path="*" element={<Navigate to="/movie" />}/> */}
         </Routes>
