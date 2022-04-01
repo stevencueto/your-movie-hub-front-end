@@ -1,0 +1,23 @@
+.search-bar {
+    width: 75%;
+    max-width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.search-label{
+    padding: .5em 1em;
+}
+
+.contrain{
+    width: 400px;
+}
+
+.search-form{
+    height: 40px;
+    margin-top: 4px;
+    width: 400px;
+    display: block;
+    margin-bottom: 1em;
+}

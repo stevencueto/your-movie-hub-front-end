@@ -1,15 +1,17 @@
 import {useState, useEffect} from 'react'
 import  fakePoster from '../../../images/not-movie-pic.jpeg'
+import PlotAndMore from './PlotAndMore'
 import './moviedescription.css'
-
 
 function MovieDescription({name}) {
   const [movie, setMovie] = useState([])
   const [errMessage, setErrMessage] = useState([])
-  const imgPath = `http://image.tmdb.org/t/p/w1280${movie.poster_path}`
-  const img = !!movie.poster_path ? imgPath : fakePoster
-
-  const populateFunction = async() => {
+  const poster = `http://image.tmdb.org/t/p/w1280${movie.poster_path}`
+  const img = movie.poster_path ? poster : fakePoster
+  const fakePosBig = ` linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.4)), url(${fakePoster})`
+  const posterBig = ` linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.4)), url(http://image.tmdb.org/t/p/w1280${movie.poster_path})`
+  const bigImg = movie.poster_path ? posterBig : posterBig
+   const populateFunction = async() => {
     try{
       const movieRequest = await fetch(`https://yourmoviehubapi.herokuapp.com/movies/movie/${name}`, {
         method: "GET",
@@ -28,18 +30,20 @@ function MovieDescription({name}) {
 useEffect(() => {
   populateFunction()
 }, [])
-
 return (
-    <div className='movie-detail'>
-			{errMessage && <p className='error-mesage'> {errMessage} </p>}
-      <header className='movie-header' style={{backgroundImage: `url(${img})`}}>
+    <div className='movie-detail' >
+      <header className='movie-nav'>
+       <p className='title-small'> {movie.title || movie.name} </p> 
       </header>
-      <div className='float-page'>
-        <h1 className='movie-name'>{movie.name || movie.title }</h1>
-        <div className='modal-body'>
+      <div className='poster-large-screens' style={{backgroundImage: bigImg}}></div>
+      <img src={img} className="movie-poster"/>
+      <div className='movie-name'>
+        <p className='plot'>{movie.overview}</p>
+
       </div>
-        {/* <h2>{JSON.stringify(movie)}</h2> */}
-      </div>
+
+      			{errMessage ? <p className='error-mesage'> {errMessage} </p> : null}
+            <PlotAndMore movie={movie}/>
     </div>
   )
 }

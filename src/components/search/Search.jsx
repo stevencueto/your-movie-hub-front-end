@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import SingleMovie from '../movies/SingleMovie'
 import '../movies/ShowMovies/movies.css'
-
+import './search.css'
 
 const Search = () => {
 	let navigate = useNavigate();
@@ -56,21 +56,17 @@ const Search = () => {
 	}, [])
   return (
     <section className="main-dashboard">
-			{!!errMessage && <p className='error-mesage'> {errMessage} </p>}
+			{errMessage ? <p className='error-mesage'> {errMessage} </p> : null}
         <form className='search-form' onSubmit={(e)=> e.preventDefault()}>
-          <div>
-          <label htmlFor="search">Search</label>
+          <label className="search-label"htmlFor="search">Search</label>
             <input 
             type="text"
             name="search"
             value={search}
             ref={searchRef}
-            id="search-input"
+            className="search-bar "
             onChange={(e) => {setSearch(e.target.value)}}
-            />
-            <button className='btn-smller'> 🔍 </button>
-          </div>
-            
+            />          
         </form>
 
         <div className="movie-grid">

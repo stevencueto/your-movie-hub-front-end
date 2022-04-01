@@ -1,12 +1,12 @@
-.poster{
+.min-poster{
     width: 300px;
     border-radius: 5px;
-    box-shadow: 0px 1px 1px 1px rgb(0, 0, 0);
+    box-shadow: 0px 1px 1px 1px rgb(95, 90, 90);
     margin: .4em auto;
     cursor: pointer;
 }
 
-.poster:hover{
+.min-poster:hover{
     opacity: .5;
     transition: 0.5s ease-in-out;
 }
@@ -42,28 +42,22 @@
     .movie-grid{
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
-    .poster{
+    .min-poster{
         width: 220px;
     }
 }
 
-
+@media only screen and (min-width: 760px){
+    .min-poster{
+        box-shadow: 0px 1px 1px 1px rgb(0, 0, 0);
+    }
+    
+}
 #search-input{
     height: 30px;
 }
 
-.search-form{
-    display: flex;
-    height: 40px;
-    justify-content: center;
-    margin-top: 4px;
-}
 
-.btn.smller{
-    width: 40px;
-    height: 30px;
-    padding: 0;
-}
 
 .btn-pages{
     display: flex;
