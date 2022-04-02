@@ -6,10 +6,10 @@ const SingleMovie = (props) => {
   const img = !!props.movie.poster_path ? imgPath : fakePoster
   const name = props.movie.title || props.movie.name
   const handleClick = () => {
-    console.log('click')
+    console.log(props.movie, 'kim')
   }
   return (
-    <div key={props.movie._id} className="max-width">
+    <div key={`${props.movie._id}`} className="max-width">
         <Link to={`/movie/${name}?movie=${props.movie.id}`}><img onClick={()=> handleClick()} className='min-poster' src={img} alt="" /></Link>
     </div>
   )

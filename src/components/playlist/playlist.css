@@ -1,5 +1,62 @@
 .playlist-flex{
-    height: 300px;
+    height: 500px;
     display: flex;
-    overflow-y: scroll;
+    justify-content: flex-start;
+    overflow-x: scroll;
+}
+.with-btn img {
+    margin: 10px;
+    width: 250px;
+}
+
+.with-btn{
+    margin: 0;
+}
+
+.blocked{
+    display: block;
+    margin: 5px auto;
+}
+
+.edit{
+    font-size: .5em;
+}
+
+.edit-form{
+    margin-top: 1em;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center; 
+}
+.edit-form p{
+    margin: 5px auto 10px;
+}
+.edit-form textarea, .edit-form input {
+    background-color: rgb(242, 242, 242);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.edit-form .btn{
+    border-radius: 10px;
+}
+
+.margin-form{
+    margin-top: 1em;
+}
+
+.playlist-info{
+    text-align: center;    
+}
+@media only screen  and (min-width: 150px){
+    .playlist-flex{
+        margin-left: 10%;
+    }
+    .with-btn{
+        margin: 5px;
+    }
+    .with-btn > .max-width {
+        width: 250px;
+    }
 }

@@ -99,5 +99,11 @@
 
 .max-width{
     max-width: 350px;
-    position:relative;
+}
+
+#palylistToAdd{
+    color: black;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
 }

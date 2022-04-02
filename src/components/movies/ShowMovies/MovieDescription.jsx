@@ -2,8 +2,7 @@ import {useState, useEffect} from 'react'
 import  fakePoster from '../../../images/not-movie-pic.jpeg'
 import PlotAndMore from './PlotAndMore'
 import './moviedescription.css'
-
-function MovieDescription({name}) {
+function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
   const [movie, setMovie] = useState([])
   const [errMessage, setErrMessage] = useState([])
   const poster = `http://image.tmdb.org/t/p/w1280${movie.poster_path}`
@@ -43,7 +42,7 @@ return (
       </div>
 
       			{errMessage ? <p className='error-mesage'> {errMessage} </p> : null}
-            <PlotAndMore movie={movie}/>
+            <PlotAndMore movie={movie} addNewMovie={addNewMovie} addToPlalist={addToPlalist} allMyPlaylists={allMyPlaylists} />
     </div>
   )
 }

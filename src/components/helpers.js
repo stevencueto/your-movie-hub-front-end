@@ -17,5 +17,22 @@ const genre = [
     {"id":10770,"name":"TV Movie"},
     {"id":53,"name":"Thriller"},
     {"id":10752,"name":"War"},
-    {"id":37,"name":"Western"}]
-export default genre;
+    {"id":37,"name":"Western"}
+]
+const apiLink = 'https://yourmoviehubapi.herokuapp.com/'
+
+
+
+
+
+
+
+
+
+
+
+export default apiLink;
+
+
+
+
