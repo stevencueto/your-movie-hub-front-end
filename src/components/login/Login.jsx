@@ -1,3 +1,5 @@
+
+   
 import React from 'react'
 import { useState, useEffect, useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -55,7 +57,7 @@ const Login = () => {
 			}
 		}catch(err){
 			console.log(err)
-			setErrMessage('Failed to communicate with server')
+			setErrMessage('Failed to communite with server')
 		}
 		
 	}

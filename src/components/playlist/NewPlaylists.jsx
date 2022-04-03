@@ -1,4 +1,4 @@
-import { Modal, Button } from "react-bootstrap"
+import {  Button } from "react-bootstrap"
 import { useState } from "react"
 const NewPlaylists = (props) => {
 	const [show, setShow] = useState(false);

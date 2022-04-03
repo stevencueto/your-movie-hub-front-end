@@ -10,11 +10,14 @@ const PlotAndMore = (props)=> {
     console.log(props.movie.runtime, "run time")
   return (
     <div className='movie-plo'>
-
+      <div className='movie-plot-grid'>
         <Information movie={props.movie}/>
         <Production movie={props.movie}/>
         <MovieStats movie={props.movie}/>
-        <AddToPlayLists addNewMovie={props.addNewMovie} movie={props.movie} allMyPlaylists={props.allMyPlaylists} ></AddToPlayLists>        
+      </div>
+        
+        <AddToPlayLists addNewMovie={props.addNewMovie} movie={props.movie} allMyPlaylists={props.allMyPlaylists} ></AddToPlayLists> 
+        {props.homepage}
         <Link className='btn' to={{ pathname: props.homepage }} target="_blank" >Watch Movie?</Link>
     </div>
   )

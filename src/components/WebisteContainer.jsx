@@ -18,6 +18,7 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 const WebisteContainer = ()=> {
+  const [cleanupFunction, setCleanupFuction] = useState(false)
   let query = useQuery();
   const [allMyPlaylists, setAllMyPlaylists] = useState([])
   const [addToPlalist, setAddToPlalist] = useState("")
@@ -171,8 +172,12 @@ const WebisteContainer = ()=> {
     return setActiveMenu('menu')
   }
   useEffect(()=>{
+    setCleanupFuction(true)
     setActiveMenu('menu')
     getPlaylists()
+    return ()=>{
+      setCleanupFuction(false)
+    }
   }, [])
   return (
     <div onClick={toggleMenu} id="website-container">
@@ -184,7 +189,7 @@ const WebisteContainer = ()=> {
 					<Route path="/all" exact element={<AllMovies/>} />
           <Route path='/search' exact element={<Search/>}/>
           <Route path="/trending/" exact element={<Dashboard key={'dash-in-app'}/>} />
-          <Route path="/playlist/" exact element={<Playlists getPlaylists={getPlaylists} editPlayListRequest={editPlayListRequest} newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage} allMyPlaylists={allMyPlaylists} removeMovie={removeMovie}/>} />
+          <Route path="/playlist/" exact element={<Playlists editPlayListRequest={editPlayListRequest} newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage} allMyPlaylists={allMyPlaylists} removeMovie={removeMovie}/>} />
           <Route path="/movie/:id" exact element={<MovieDescription name={query.get("movie")} addToPlalist={addToPlalist} setAddToPlalist={setAddToPlalist} addNewMovie={addNewMovie} allMyPlaylists={allMyPlaylists} ></MovieDescription>} />
           			{/* <Route path="*" element={<Navigate to="/movie" />}/> */}
         </Routes>
