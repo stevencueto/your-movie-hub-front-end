@@ -72,3 +72,7 @@ body{
 .website-container{
   min-height: 72vh;
 }
+
+select{
+  display: block;
+}

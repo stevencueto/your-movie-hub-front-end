@@ -1,15 +1,22 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import SingleMovie from '../movies/SingleMovie'
 import { Link } from 'react-router-dom'
 import MoviesPlaylist from './MoviesPlaylist.jsx'
 import EditPlayList from './EditPlayList'
 
 const IndividualPlayLists = (props) => {
-    const movies = props.playlist.movie;
+    const [movies, setMovies] = useState(props.playlist.movie)
     const [show, setShow] = useState(false)
     const handleShow = () =>{
       setShow(!show)
     }
+    const updateMovies = ()=>{
+      setMovies(props.playlist.movie)
+    }
+    useEffect(()=>
+    {
+      updateMovies()
+    },[props.playlist])
   return (
     <div className="playlist-info" key={`${props.playlist._id}9`}>
         {

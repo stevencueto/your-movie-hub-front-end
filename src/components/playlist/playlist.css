@@ -31,6 +31,9 @@
 }
 .edit-form p{
     margin: 5px auto 10px;
+    padding: 12px;
+    border: 1px solid white;
+    border-radius: 20px;
 }
 .edit-form textarea, .edit-form input {
     background-color: rgb(242, 242, 242);
@@ -49,6 +52,17 @@
 .playlist-info{
     text-align: center;    
 }
+
+.playlist-info h3{
+    margin: 10px auto;
+    font-size: 1.5em;
+}
+
+.playlist-info p{
+    padding: 5px;
+}
+
+
 @media only screen  and (min-width: 150px){
     .playlist-flex{
         margin-left: 10%;

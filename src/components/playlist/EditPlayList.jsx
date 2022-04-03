@@ -25,7 +25,7 @@ const EditPlayList = (props) => {
     }
 	return (
         <form className="edit-form"onSubmit={handleFrom}> 
-            <p onClick={props.handleShow}>hide</p>
+            <p className="hide" onClick={props.handleShow}>hide</p>
             <input
                 value={toEdit.name}
                 onChange={(e)=> handleChange(e)}

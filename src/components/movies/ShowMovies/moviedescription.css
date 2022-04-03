@@ -30,13 +30,15 @@
 }
 .plot{
     padding: 5%;
+    margin-top: 2vh;
+
 }
 .poster-large-screens{
     display: none;
 }
 @media only screen and (min-width: 450px) {
     .plot{
-        padding: 3vw;
+        padding: 2vw;
     }
 
 }
@@ -56,4 +58,11 @@
         border-radius: 10px;
     }
 
+}
+
+.add-to-playlist{
+    width: 340px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
 }

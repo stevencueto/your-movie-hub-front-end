@@ -19,9 +19,19 @@ function useQuery() {
 }
 const WebisteContainer = ()=> {
   let query = useQuery();
-
   const [allMyPlaylists, setAllMyPlaylists] = useState([])
   const [addToPlalist, setAddToPlalist] = useState("")
+  const [errMessage, setErrMessage] = useState("")
+	let navigate = useNavigate();
+  const handleAPICall = (response, thingToSet) =>{
+    if (response.success) {
+      thingToSet(response.data)
+      setErrMessage('')
+    }else{
+      setErrMessage(response.data)
+    } 
+  }
+
   const getPlaylists = async() =>{
     if(!localStorage.getItem('token')) return 
     try{
@@ -32,17 +42,18 @@ const WebisteContainer = ()=> {
           }
       })
       const response = await request.json()
-      if (response.success) {
-          setAllMyPlaylists(response.data)
-          console.log(response.data)
-      }else{
-        setErrMessage(response.data)
-      } 
+      handleAPICall(response, setAllMyPlaylists)
     }catch(err){
         console.log(err)
         setErrMessage("server error")     
     }
   }
+  const [newPlaylist , setNewPlaylist] = useState(
+    {
+      name: "",
+      description: ""
+    }
+  )
 
   const handleNewPlaylist = (e) => {
     const {name, value } = e.target;
@@ -66,12 +77,16 @@ const WebisteContainer = ()=> {
         })
         const response = await request.json()
         if (response.success) {
-            console.log(response.data)
+          const newPlaylist = allMyPlaylists.map(one => one._id === playlist ? response.data : one)
+          setAllMyPlaylists(newPlaylist)
+          navigate("/playlist", { replace: true })
+          setErrMessage('')
         } else{
-            console.log(response.data)
+          setErrMessage(response.data)
         }
     }catch(err){
         console.log(err)
+        setErrMessage("server error")
     }
   }
   const removeMovie = async(movie, playlist)=>{
@@ -87,12 +102,16 @@ const WebisteContainer = ()=> {
         })
         const response = await request.json()
         if (response.success) {
-            console.log(response.data)
+          const newPlaylist = allMyPlaylists.map(one => one._id === playlist ? response.data : one)
+          console.log(newPlaylist)
+          setAllMyPlaylists(newPlaylist)
+          setErrMessage('')
         } else{
-            console.log(response.data)
+          setErrMessage(response.data)
         }
     }catch(err){
         console.log(err)
+        setErrMessage('server error')
     }
   }
   const editPlayListRequest = async(playlist) => {
@@ -106,30 +125,17 @@ const WebisteContainer = ()=> {
           },
           body: JSON.stringify(playlist),
       })
-      const response = await request.json()
-      if (response.success) {
-          console.log(response.data)
-          // navigate("/", { replace: true });
-      }else{
-        setErrMessage(response.data)
-        console.log(response.data)
-      } 
-  }catch(err){
-      console.log(err)       
-  }
-
+      const response = await request.json();
+      if(response.success){
+        const newPlaylist = allMyPlaylists.map(one => one._id === playlist._id ? response.data : one)
+        setAllMyPlaylists(newPlaylist)
+      }
+    }catch(err){
+        console.log(err)       
+    }
   }
   
-  const [errMessage, setErrMessage] = useState("")
-	let navigate = useNavigate();
-
-  const [newPlaylist , setNewPlaylist] = useState(
-    {
-      name: "",
-      description: ""
-    }
-  )
-
+ 
   const newPlaylistReq = async ()  => {
     try{
         const request = await fetch(`${apiLink}playlist/`, {
@@ -146,9 +152,9 @@ const WebisteContainer = ()=> {
                 name: "",
                 description: ""
               })
-            console.log(response.data)
-            window.location.reload(false);
-            // navigate("/", { replace: true });
+              console.log(response.data)
+              setAllMyPlaylists(prev=>[response.data, ...prev])
+              setErrMessage('')
         }else{
           setErrMessage(response.data)
         } 
@@ -178,10 +184,8 @@ const WebisteContainer = ()=> {
 					<Route path="/all" exact element={<AllMovies/>} />
           <Route path='/search' exact element={<Search/>}/>
           <Route path="/trending/" exact element={<Dashboard key={'dash-in-app'}/>} />
-          <Route path="/playlist/" exact element={<Playlists editPlayListRequest={editPlayListRequest} newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage} allMyPlaylists={allMyPlaylists} removeMovie={removeMovie}/>} />
+          <Route path="/playlist/" exact element={<Playlists getPlaylists={getPlaylists} editPlayListRequest={editPlayListRequest} newPlaylist={newPlaylist} handleNewPlaylist={handleNewPlaylist} newPlaylistReq={newPlaylistReq} errMessage={errMessage} allMyPlaylists={allMyPlaylists} removeMovie={removeMovie}/>} />
           <Route path="/movie/:id" exact element={<MovieDescription name={query.get("movie")} addToPlalist={addToPlalist} setAddToPlalist={setAddToPlalist} addNewMovie={addNewMovie} allMyPlaylists={allMyPlaylists} ></MovieDescription>} />
-          
-
           			{/* <Route path="*" element={<Navigate to="/movie" />}/> */}
         </Routes>
         <Footer></Footer>
