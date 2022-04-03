@@ -6,7 +6,7 @@ const MovieStats = (props) => {
      props.movie.budget > 0 ?
       <>
         <h4> Budget</h4>
-        <p> {props.movie.budget}</p>
+        <p> ${Number(props.movie.budget).toLocaleString()}</p>
       </> 
      : null  }        
        
@@ -34,7 +34,7 @@ const MovieStats = (props) => {
         { props.movie.revenue ? 
         <>
         <h4> Revenue </h4>
-        <p>{props.movie.revenue}</p>
+        <p>${Number(props.movie.revenue).toLocaleString()} </p>
         </>
         : null 
         }
