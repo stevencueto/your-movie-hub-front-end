@@ -8,7 +8,6 @@ const Cast = (props) => {
         <img className="cast-crew-photo" src={img} alt={`${props.cast.name} profile photo`}/>
         <div className='person-details'>
             <h4>{props.cast.name}</h4>
-            <p>{props.cast.popularity}</p>
             <p>{props.cast.character}</p>
         </div>
     </div>

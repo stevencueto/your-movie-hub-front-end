@@ -7,7 +7,6 @@ const Crew = (props) => {
         <img className="cast-crew-photo"src={img} alt={`${props.crew?.name} profile photo`}/>
         <div className="person-details">
             <h4>{props.crew?.name}</h4>
-            <p>{props.crew?.popularity}</p>
             <p>{props.crew?.job}</p>
         </div>
       

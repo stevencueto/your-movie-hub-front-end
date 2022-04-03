@@ -31,6 +31,8 @@ const Search = () => {
               setSearchMovies(searchResults.results)
               setPage(searchResponse.totalPages)
               setErrMessage('')
+            }else{
+              setErrMessage('')
             }
         } catch (err) {
           console.log(err, 'errr')

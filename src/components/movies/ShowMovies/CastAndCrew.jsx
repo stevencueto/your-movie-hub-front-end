@@ -10,7 +10,7 @@ const CastAndCrew = (props) => {
       </div>
       </div>
       <div className="cast-cont">
-        <h3>Cast</h3>
+        <h3>Crew</h3>
         <div className="small-croll">
             { props.crew.length > 0 ? props.crew.map( (crew) => { return <Crew key={crew.credit_id} crew={crew} ></Crew> }) : null}
         </div>
