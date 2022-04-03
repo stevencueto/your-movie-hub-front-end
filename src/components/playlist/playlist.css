@@ -66,6 +66,9 @@
    padding: 10%;
 }
 
+.playlists-cont{
+    height: 80vh;
+}
 
 @media only screen  and (min-width: 450px){
     .playlist-flex{
@@ -74,7 +77,8 @@
     .with-btn{
         margin: 5px;
     }
-    .with-btn > .max-width {
+    .with-btn > .max-width img{
         width: 250px;
+        height: 375px;
     }
 }

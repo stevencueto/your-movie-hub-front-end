@@ -4,6 +4,7 @@
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
+  font-weight: 300;
   font-family: 'Roboto', sans-serif;
   color: #FFFFFF;
 }
@@ -53,9 +54,6 @@ body{
       background-size: contain;
       background-repeat: no-repeat;
   }
-  .website-container{
-    min-height: 96.5vh;
-  }
 }
 .description-box{
   width: 230px;
@@ -70,10 +68,18 @@ body{
 }
 
 .website-container{
-  min-height: 72vh;
+  min-height: 77vh;
 }
-
-
+@media only screen  and (min-width: 450px){
+  .website-container{
+    min-height: 80.2vh;
+  }
+}
+@media only screen  and (min-width: 450px){
+  .website-container{
+    min-height: 90.2vh;
+  }
+}
 ul li {
   list-style: none;
 }
@@ -82,9 +88,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
-p {
-  font-weight: 300;
-}
 
 select{
   -webkit-appearance: menulist-textfield;

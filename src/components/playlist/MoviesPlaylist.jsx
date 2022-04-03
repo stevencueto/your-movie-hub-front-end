@@ -8,7 +8,7 @@ const MoviesPlaylist = (props) => {
       return  <> 
         <div className='with-btn'>
           <SingleMovie key={movie._id} movie={movie} />
-          <button className='btn blocked' key={`${movie._id}remove`} onClick={()=> props.removeMovie(movie, props.playlistId)}> Remove? </button>
+          <span className='edit' key={`${movie._id}remove`} onClick={()=> props.removeMovie(movie, props.playlistId)}>X</span>
         </div>
 
          </> 
