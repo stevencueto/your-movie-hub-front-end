@@ -18,7 +18,7 @@ function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
       const movieRes = await movieRequest.json()
     if(movieRes.success){
       setMovie(movieRes.data)
-      console.log(movieRes)
+      console.log(movieRes.data)
       }else{
         setErrMessage(movieRes.data)
       }

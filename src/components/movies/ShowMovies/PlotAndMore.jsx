@@ -6,9 +6,7 @@ import Production from './Production'
 import Information from './Information'
 const PlotAndMore = (props)=> {
     const imbd = `https://www.imdb.com/title/${props.movie.imdb_id}`
-  
-    console.log(props.movie.runtime, "run time")
-  return (
+    return (
     <div className='movie-plo'>
       <div className='movie-plot-grid'>
         <Information movie={props.movie}/>

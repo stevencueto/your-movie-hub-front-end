@@ -39,17 +39,69 @@
 
 
 .movie-plot-grid{
+    display: block;
+    margin-top: -25vh;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.movie-plot-grid div {
+    min-width: 350px;
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.ul-plot li{
+    padding: 4px;
+    font-size: 0.8em;
+}
+
+.ul-plot li img{
+    background-color: white;
+    width: 8em;
+}
+
+.plot-subheading{
+    font-size: 1em;
+}
+
+.stats h4 {
+    font-size: .9em;
+    margin: .3em auto;
+}
+
+.stats p{
+    font-size: .7em;
+    margin-bottom: 1em;
+    padding: 2px;
 }
 @media only screen and (min-width: 450px) {
     .plot{
         padding: 2vw;
     }
+    .movie-plot-grid{
+        grid-template: 150px 150px /1fr 1fr;
 
+    }
+    .movie-plot-grid div {
+        min-width: 200px;
+        width: 100%;
+    }
 }
+@media only screen and (min-width: 769px) {
+    .movie-plot-grid{
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
 
+    }
+    .movie-plot-grid div {
+        min-width: 200px;
+        margin: .5em 1em ;
+    }
+}
 @media only screen and (min-width: 902px) {
+    .plot{
+        padding: 2%;
+    }
     .movie-poster{
         /* display: none; */
         max-width: 1600px;
@@ -63,8 +115,11 @@
         background-repeat: no-repeat;
         border-radius: 10px;
     }
+    .movie-plot-grid div {
+        min-width: 300px;
+    }
     .movie-plot-grid{
-        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        grid-template-columns: repeat(3, minmax(280px, 1fr));
 
     }
 

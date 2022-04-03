@@ -6,7 +6,6 @@
   box-sizing: border-box;
   font-family: 'Comfortaa', cursive;
   color: #FFFFFF;
-  font-weight: 300;
 }
 ::-webkit-input-placeholder {
   text-align: center;
@@ -76,4 +75,16 @@ body{
 
 select{
   display: block;
+}
+
+ul li {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+p {
+  font-weight: 300;
 }

@@ -8,7 +8,6 @@ const AddToPlayLists = (props)=> {
     const handleChange = (e) => {
         const {value} = e.target
         setAddToPlay(value)
-        console.log(addToPlay, "s")
     }
 
   return (
