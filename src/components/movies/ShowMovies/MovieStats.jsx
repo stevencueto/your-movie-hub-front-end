@@ -1,19 +1,8 @@
 import { useState, useEffect } from "react";
 const MovieStats = (props) => {
-  const [total, setTotal] = useState("") 
-  const runTime = () =>{
-    let totalMinutes = props.movie.runtime
-    const hours = Math.floor(totalMinutes / 60);          
-    const mins = totalMinutes % 60;
-    const newTime = `${hours} hr and ${mins} minutes`
-    setTotal(newTime)
-    }
-
-  useEffect(()=>{
-    runTime()
-  },[])
+ 
   return (
-    <div className="stats">{
+    <div className="stats taller">{
      props.movie.budget > 0 ?
       <>
         <h4> Budget</h4>
@@ -50,7 +39,7 @@ const MovieStats = (props) => {
         : null 
         }
         <h4> Runtime </h4>
-        <p> {total} mins</p>
+        <p> {props.total} mins</p>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import {useState} from 'react'
 
 const AddToPlayLists = (props)=> {
-    console.log(props, props)
     const [showAdd, setShowAdd] = useState(false)
     const playlist = props.allMyPlaylists;
     const [addToPlay, setAddToPlay] = useState("")
@@ -12,12 +11,12 @@ const AddToPlayLists = (props)=> {
 
   return (
     <div>
-        <button className='btn' onClick={()=> setShowAdd(!showAdd)}> addToPlalist</button>
+        <button className='btn-other' onClick={()=> setShowAdd(!showAdd)}> Add to Playlist?</button>
         {showAdd
         ?
         <form className ="add-to-playlist" onSubmit={(e) => {props.addNewMovie(props.movie, addToPlay); e.preventDefault()}}>
         
-        <label htmlFor="palylistToAdd">Choose the playlist</label>
+        <label htmlFor="palylistToAdd" className='choose'>Choose playlist</label>
             <select id="palylistToAdd" name="palylistToAdd" required value={addToPlay} onChange={handleChange}>
                 <option></option>
                 {playlist.map((list)=>{
@@ -31,7 +30,7 @@ const AddToPlayLists = (props)=> {
                 })
                 }
             </select>  
-            <button className='btn'>Submit</button>      
+            <button className='btn-other'>Submit</button>      
             </form>
             :
             null

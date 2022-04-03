@@ -73,9 +73,6 @@ body{
   min-height: 72vh;
 }
 
-select{
-  display: block;
-}
 
 ul li {
   list-style: none;

@@ -6,7 +6,7 @@ function Production(props) {
     const imgPath = `http://image.tmdb.org/t/p/w185`
 
   return (
-    <div className="production"> 
+    <div className="production taller"> 
         { 
         productionCompany 
         ?

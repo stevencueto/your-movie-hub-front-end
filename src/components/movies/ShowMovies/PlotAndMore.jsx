@@ -4,6 +4,7 @@ import AddToPlayLists from './AddToPlayLists'
 import MovieStats from './MovieStats'
 import Production from './Production'
 import Information from './Information'
+import RecommendedMovies from './RecommendedMovies'
 const PlotAndMore = (props)=> {
     const imbd = `https://www.imdb.com/title/${props.movie.imdb_id}`
     return (
@@ -11,12 +12,12 @@ const PlotAndMore = (props)=> {
       <div className='movie-plot-grid'>
         <Information movie={props.movie}/>
         <Production movie={props.movie}/>
-        <MovieStats movie={props.movie}/>
+        <MovieStats total={props.total} movie={props.movie}/>
       </div>
         
-        <AddToPlayLists addNewMovie={props.addNewMovie} movie={props.movie} allMyPlaylists={props.allMyPlaylists} ></AddToPlayLists> 
-        {props.homepage}
-        <Link className='btn' to={{ pathname: props.homepage }} target="_blank" >Watch Movie?</Link>
+        <h3 className='grid-heading'>Similar Movies</h3>
+        <RecommendedMovies movies={props.similarMovies} key={`${props.movie.id}5${props.movie.name}`}></RecommendedMovies>
+
     </div>
   )
 }

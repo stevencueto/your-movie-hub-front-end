@@ -2,7 +2,7 @@ const Information = (props)=> {
     const languages = props.movie.spoken_languages
     const genres = props.movie.genres
   return (
-    <div>
+    <div id="languages">
         { 
         languages 
         ?

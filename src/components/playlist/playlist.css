@@ -63,13 +63,13 @@
 }
 
 .playlist-flex{
-    margin-left: 10%;
+   padding: 10%;
 }
 
 
-@media only screen  and (min-width: 150px){
+@media only screen  and (min-width: 450px){
     .playlist-flex{
-        margin-left: 5px;
+        padding: 5px;
     }
     .with-btn{
         margin: 5px;

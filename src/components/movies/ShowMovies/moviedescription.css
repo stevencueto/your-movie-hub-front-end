@@ -1,8 +1,11 @@
 
 .movie-name{
     text-align: center;
-    margin-top: -3vh;
+    padding-top: 1em;
+    margin-top: -1vh;
     margin-bottom: 30vh;
+    backdrop-filter: blur(10vh);
+
 }
 .title-small{
     text-align: center;
@@ -30,8 +33,6 @@
 }
 .plot{
     padding: 5%;
-    margin-top: 2vh;
-
 }
 .poster-large-screens{
     display: none;
@@ -41,19 +42,23 @@
 .movie-plot-grid{
     display: block;
     margin-top: -25vh;
+    margin-bottom: 5vh;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
 }
 
 .movie-plot-grid div {
     min-width: 350px;
     width: 100%;
     padding: 5px 20px;
+    height: fit-content;
+    max-height: 600px;
 }
 
 .ul-plot li{
     padding: 4px;
     font-size: 0.8em;
+    height: 100%;
 }
 
 .ul-plot li img{
@@ -75,27 +80,52 @@
     margin-bottom: 1em;
     padding: 2px;
 }
+.other-fixes{
+    margin-bottom: 3em;
+    height: 550px;
+}
+
+.other-fixes .max-width img {
+    margin: 0 .7em;
+    width: 250px;
+    height: 375px;
+    border-radius: 10px;
+}
+.margin-top{
+    margin-top: 200px;
+}
+
+.grid-heading{
+    text-align: center;
+    font-size: 1.2em;
+}
+
 @media only screen and (min-width: 450px) {
     .plot{
         padding: 2vw;
     }
     .movie-plot-grid{
         grid-template: 150px 150px /1fr 1fr;
-
     }
     .movie-plot-grid div {
         min-width: 200px;
         width: 100%;
     }
+    .grid-heading{
+        margin-top: 13em;
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 3em;
+    }
 }
 @media only screen and (min-width: 769px) {
     .movie-plot-grid{
-        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
     }
     .movie-plot-grid div {
-        min-width: 200px;
-        margin: .5em 1em ;
+        min-width: 180px;
+        margin: .5em auto ;
     }
 }
 @media only screen and (min-width: 902px) {
@@ -126,8 +156,39 @@
 }
 
 .add-to-playlist{
-    width: 340px;
+    min-width: 370px;
+    max-width: 450px;
     display: flex;
     justify-content: center;
     justify-items: center;
+}
+.add-to-playlist select{
+    height: 50px;
+}
+
+#palylistToAdd{
+    margin: 5px;
+    height: 35px;
+    width: 150px;
+}
+
+.choose{
+    margin-top: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 130px;
+}
+
+.btn-other{
+    text-decoration: none;
+    background-color: #FFFFFF;
+    color: black;
+    border: none;
+    width: 200px;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 5px auto;
+}
+#languages{
+    height: 200px;
 }
