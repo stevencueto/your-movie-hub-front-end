@@ -112,3 +112,22 @@
 select{
     color: black;
 }
+
+.form-api-req{
+    width: 250px;
+    display: block;
+}
+
+.btn.smaller-btn{
+    width: 120px;
+    height: 30px;
+    border-radius: 0 8px 8px 0;
+    border: none;
+}
+
+#form-main{
+    height: 30px;
+    width: 130px;
+    border-radius: 8px 0 0 8px;
+    border: none;
+}

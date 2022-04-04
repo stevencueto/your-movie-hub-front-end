@@ -16,8 +16,9 @@ const PlotAndMore = (props)=> {
       </div>
         
         <h3 className='grid-heading'>Similar Movies</h3>
-        <RecommendedMovies movies={props.similarMovies} key={`${props.movie.id}5${props.movie.name}`}></RecommendedMovies>
-
+        <RecommendedMovies movies={props.similarMovies} ></RecommendedMovies>
+        <h3 className='grid-heading margin-bottom-yes'>Recommended Movies</h3>
+        <RecommendedMovies movies={props.recommendedMovies}></RecommendedMovies>
     </div>
   )
 }

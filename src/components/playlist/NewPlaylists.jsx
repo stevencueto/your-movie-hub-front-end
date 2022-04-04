@@ -4,13 +4,14 @@ const NewPlaylists = (props) => {
 	const [show, setShow] = useState(false);
 	const handleShow =(e)=>{
 		e.preventDefault()
+		props.bigger()
 		setShow(false)
 		props.newPlaylistReq(e)
 	}
   
 	return (
     <section>
-			<Button key='idx'  className="btn display-block" onClick={() => setShow(!show)}>
+			<Button key='idx'  className="btn display-block" onClick={() => {setShow(!show); props.bigger()}}>
 			Make New Playlist?
 			</Button>
 			{

@@ -20,7 +20,6 @@ const AddToPlayLists = (props)=> {
             <select id="palylistToAdd" name="palylistToAdd" required value={addToPlay} onChange={handleChange}>
                 <option></option>
                 {playlist.map((list)=>{
-                    console.log(list)
                    return <option
                    key={list._id}
                    value={list._id}

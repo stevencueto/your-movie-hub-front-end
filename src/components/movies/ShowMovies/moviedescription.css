@@ -79,9 +79,6 @@
     margin-bottom: 1em;
     padding: 2px;
 }
-.other-fixes{
-    height: 550px;
-}
 
 .other-fixes .max-width img {
     margin: 0 .7em;
@@ -185,6 +182,7 @@
     padding: 10px;
     border-radius: 7px;
     margin: 5px auto;
+    cursor: pointer;
 }
 #languages{
     height: 200px;
@@ -230,11 +228,25 @@
     height: 220px;
 }
 
+.player-wrapper {
+    width: 80%; 
+    height: 40vw;
+    max-width: 1300px;
+    margin: 2vh auto;
+  }
+  .react-player {
+    padding-top: 56.25%; 
+    position: relative;
+}
+  
+  .react-player > div {
+    position: absolute; 
+  }
+
 @media only screen and (min-width: 769px) {
     .cast-single{
         height: 250px;
     }
-
     .cast-grid{
         margin-bottom: 20vh;
     }

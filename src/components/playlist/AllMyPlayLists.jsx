@@ -5,7 +5,7 @@ const AllMyPlayLists = (props)=> {
   return (
     <section  className="playlist-grid" key="playlist-grid">
         { props.allMyPlaylists ? props.allMyPlaylists.map((playlist)=>{
-            return  <IndividualPlayLists editPlayListRequest={props.editPlayListRequest}  key={`${playlist._id}contails`} playlist={playlist} removeMovie={props.removeMovie} />
+            return  <IndividualPlayLists editPlayListRequest={props.editPlayListRequest} deletePlayListRequest={props.deletePlayListRequest}  key={`${playlist._id}contails`} playlist={playlist} removeMovie={props.removeMovie} />
 
         }) : <p>No Playlists</p>}
     </section>

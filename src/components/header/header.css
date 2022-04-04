@@ -15,8 +15,12 @@
     display: none;
 }
 #logo {
-    padding-top: 9px;
+    padding-top: 3px;
     font-size: 1.3em;
+}
+
+#logo img{
+    height: 32px;
 }
 
 .links{

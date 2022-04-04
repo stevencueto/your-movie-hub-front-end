@@ -29,6 +29,7 @@ html{
 input{
   text-align: center;
   color: #0e0e0e;
+  line-height: 1em;
 }
 body{
   max-width: 1600px;

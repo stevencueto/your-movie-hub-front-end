@@ -35,7 +35,6 @@ const Search = () => {
               setErrMessage('')
             }
         } catch (err) {
-          console.log(err, 'errr')
           setErrMessage('Internal Server Error')
         }
       }

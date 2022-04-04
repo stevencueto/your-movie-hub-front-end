@@ -1,7 +1,7 @@
 import './header.css'
 import {Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-
+import logo from '../../images/logo.png'
 
 function useForceUpdate(){
   const [value, setValue] = useState(); // integer state
@@ -31,7 +31,7 @@ const Header  = (props) => {
     <>
     <header className='header'>
       <div id="logo">
-        <Link className="links logo-link" to="/">Your Movie Hub</Link>
+        <Link className="links logo-link" to="/"><img src={logo} alt="" /></Link>
       </div>
       <div className="toggle-button">
             <hr className="bar"/>
@@ -39,15 +39,13 @@ const Header  = (props) => {
             <hr className="bar"/>
       </div>
       <nav className={props.activeMenu}>
-        <Link className="links" to="/">Home</Link>
+        {!isLogged ? <Link className="links" to="/">Home</Link> :  null}
         {/* <Link className="links" to="/favorite-movies">Liked Movies</Link> */}
         <Link className="links" to="/search">Search</Link>
-        <Link className="links" to="/trending">Trending</Link>
+        <Link className="links" to="/explore">Explore</Link>
         <Link className="links" to="/playlist/">Playlists</Link>
-
         { isLogged ? <p className="links" to='/' onClick={() => {localStorage.clear(); setIsLogged(false)}}>Logout</p> : <Link className="links" to='/login'>Login</Link>}
-        { !isLogged && <Link className="links" to="/register">Register</Link>}
-
+        { !isLogged && <Link className="links" to="/explore">Register</Link>}
 
       </nav>
     </header>

@@ -11,10 +11,12 @@ const IndividualPlayLists = (props) => {
     const handleShow = () =>{
       setShow(!show)
     }
+    const handleDelete = ()=>{
+      setShowDelete(!showDelete)
+    }
     const [total, setTotal] = useState("") 
     const runTime = () =>{
       let totalMinutes = 0
-      console.log(movies)
       for(const movie of movies){
         totalMinutes += parseInt(movie.runtime)
       }
@@ -28,18 +30,20 @@ const IndividualPlayLists = (props) => {
       runTime()
     },[movies])
   return (
-    <div className="playlist-info" key={`${props.playlist._id}9`}>
+    <div className="playlist-info">
         {
         show 
         ?
         <EditPlayList playlist={props.playlist} editPlayListRequest={props.editPlayListRequest} handleShow={handleShow}></EditPlayList>
         :
         <>
-        <h3> {props.playlist.name} <span className="edit" onClick={handleShow}>⚙️</span> <span className='edit' onClikc={()=> setShowDelete(!showDelete)}>🗑️ </span></h3>
-        <p>{props.playlist.description}</p>
+        <h3> {props.playlist.name} <span className="edit" onClick={handleShow}>⚙️</span> <span onClick={handleDelete} className='edit'> 🗑️ </span></h3>
+        { showDelete ? <span onClick={()=> {props.deletePlayListRequest(props.playlist)}} className='edit blocked'>🗑️ </span> : null}
+        <p>{ props.playlist.description}</p>
+        <Link className='website-link' to={`/playlist/${props.playlist.name}?playlist=${props.playlist._id}`}>Got to main playlist page</Link>
         <p>{total}</p>
          { movies.length > 0  ? <MoviesPlaylist key={`${props.playlist._id}99`} removeMovie={props.removeMovie} movies={movies}  playlistId={props.playlist._id}/> : <p>Add movies to playlists</p> }
-         <Link className='website-link' to="/search">Add movies</Link>
+         <Link id="forced-id" className='website-link margin' to="/search">Add movies</Link>
          </>
       }
 

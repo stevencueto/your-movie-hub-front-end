@@ -1,17 +1,24 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import  fakePoster from '../../../images/not-movie-pic.jpeg'
 import PlotAndMore from './PlotAndMore'
 import AddToPlayLists from './AddToPlayLists'
 import apiLink from '../../helpers'
 import './moviedescription.css'
 import CastAndCrew from './CastAndCrew'
+import Trailer from './Trailer'
+import {useNavigate } from 'react-router-dom'
+
 function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
+  const posterRef = useRef(false)
   const [movie, setMovie] = useState([])
   const [similarMovies, setSimilarMovie] = useState([])
+  const [recommendedMovies, setRecommendedMovies] = useState([])
   const [errMessage, setErrMessage] = useState('')
   const [total, setTotal] = useState("")
   const [cast, setCast] = useState([])
   const [crew, setCrew] = useState([])
+  const [youtubelink, setYoutubeLink] = useState()
+  let navigate = useNavigate()
 
   const poster = `http://image.tmdb.org/t/p/w1280${movie.poster_path}`
   const img = movie.poster_path ? poster : fakePoster
@@ -27,15 +34,15 @@ function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
     if(movieRes.success){
       setMovie(movieRes.data)
       setErrMessage('')
+      posterRef.current.focus()
       }else{
-        setErrMessage(movieRes.data)
+        navigate("/explore", { replace: true });
       }
   }catch(err){
-    setErrMessage('server error')
+    navigate("/explore", { replace: true });
   }
   }  
   const similarAPICall = async() => {
-    console.log('api')
     try{
       const movieRequest = await fetch(`${apiLink}movies/similar/${name}`, {
         method: "GET",
@@ -43,6 +50,23 @@ function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
       const movieRes = await movieRequest.json()
       if(movieRes.success){
         setSimilarMovie(movieRes.data.results)
+        setErrMessage('')
+      }else{
+        setErrMessage(movieRes.data)
+      }
+    }catch(err){
+      setErrMessage('server error')
+    }
+  }
+  const recommendedAPICall = async() => {
+    try{
+      const movieRequest = await fetch(`${apiLink}movies/recommended/${name}`, {
+        method: "GET",
+        })
+      const movieRes = await movieRequest.json()
+      console.log(movieRes)
+      if(movieRes.success){
+        setRecommendedMovies(movieRes.data.results)
         setErrMessage('')
       }else{
         setErrMessage(movieRes.data)
@@ -60,9 +84,29 @@ function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
       if(movieRes.success){
         setCast(movieRes.data.cast)
         setCrew(movieRes.data.crew)
-        console.log(movieRes.data.cast,movieRes.data.crew, 'cast')
         setErrMessage('')
       }else{
+        setErrMessage(movieRes.data)
+      }
+    }catch(err){
+      setErrMessage('server error')
+    }
+  } 
+
+  const getYoutubeLink = async() => {
+    try{
+      const movieRequest = await fetch(`${apiLink}movies/video/${name}`, {
+        method: "GET",
+        })
+      const movieRes = await movieRequest.json()
+      if(movieRes.success){
+        const videos = movieRes.data.results
+        for(const video of videos){
+          if(video.name === "Official Trailer"){
+            setYoutubeLink(video)
+          }
+        }
+        }else{
         setErrMessage(movieRes.data)
       }
     }catch(err){
@@ -80,6 +124,8 @@ function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
       populateFunction()
       similarAPICall()
       getCastAndCrew()
+      getYoutubeLink()
+      recommendedAPICall()
     }, [name])
 
     useEffect(()=>{
@@ -91,8 +137,8 @@ return (
        <p className='title-small'> {movie.title || movie.name} </p> 
       </header>
       <div className='poster-large-screens' style={{backgroundImage: bigImg}}></div>
-      <img src={img} className="movie-poster"/>
-      <div className='movie-name'>
+      <img src={img}  className="movie-poster"/>
+      <div ref={posterRef} className='movie-name'>
       <div className='other-btns'>
         <AddToPlayLists addNewMovie={addNewMovie} movie={movie} allMyPlaylists={allMyPlaylists} ></AddToPlayLists> 
         <a id='forced'href={movie.homepage} target="_blank" ><button className='btn-other'>Watch Movie?</button></a>
@@ -102,8 +148,9 @@ return (
       <p className='plot'>{movie.overview}</p>  
       </div>
 
-            <PlotAndMore total={total} movie={movie} addNewMovie={addNewMovie} addToPlalist={addToPlalist} allMyPlaylists={allMyPlaylists} similarMovies={similarMovies}/>
+            <PlotAndMore total={total} movie={movie} addNewMovie={addNewMovie} addToPlalist={addToPlalist} allMyPlaylists={allMyPlaylists} similarMovies={similarMovies} recommendedMovies={recommendedMovies}/>
             { cast.length > 0 && crew.length > 0 ? <CastAndCrew cast={cast} crew={crew}></CastAndCrew> : null}
+            { youtubelink?.key ? <Trailer youtubelink={youtubelink} ></Trailer> : null }
     </div>
   )
 }

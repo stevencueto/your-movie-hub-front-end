@@ -56,7 +56,6 @@ const Login = () => {
 				setErrMessage(loginResponse.data)
 			}
 		}catch(err){
-			console.log(err)
 			setErrMessage('Failed to communite with server')
 		}
 		

@@ -8,7 +8,7 @@ function Home() {
 	let navigate = useNavigate();
   useEffect(() => {
 		const token = localStorage.getItem('token')
-		if (token) navigate("/trending", { replace: true });
+		if (token) navigate("/explore", { replace: true });
 	}, [])
   return (
     <section className='home-grid website-container'>

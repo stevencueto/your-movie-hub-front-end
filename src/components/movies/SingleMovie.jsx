@@ -5,12 +5,9 @@ const SingleMovie = (props) => {
   const imgPath = `http://image.tmdb.org/t/p/w780${props.movie.poster_path}`
   const img = !!props.movie.poster_path ? imgPath : fakePoster
   const name = props.movie.title || props.movie.name
-  const handleClick = () => {
-    console.log(props.movie, 'kim')
-  }
   return (
     <div key={`${props.movie._id}`} className="max-width">
-        <Link className="img-poster" to={`/movie/${name}?movie=${props.movie.id}`}><img onClick={()=> handleClick()} className='min-poster' src={img} alt="" /></Link>
+        <Link className="img-poster" to={`/movie/${name}?movie=${props.movie.id}`}><img className='min-poster' src={img} alt="" /></Link>
     </div>
   )
 }

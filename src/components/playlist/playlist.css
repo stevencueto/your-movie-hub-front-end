@@ -20,6 +20,13 @@
 
 .edit{
     font-size: .5em;
+    width: .5em;
+    height: .5em;
+    cursor: pointer;
+}
+.error-message{
+    text-align: center;
+    margin: 5px auto;
 }
 
 .edit-form{
@@ -67,7 +74,39 @@
 }
 
 .playlists-cont{
-    height: 80vh;
+    min-height: 80vh;
+    height: fit-content;
+}
+
+.margin{
+    margin: 1em auto;
+    height: 2em;
+}
+
+.largerscreen{
+    min-height: 150vh;
+}
+
+#forced-id{
+    margin: 1em auto;
+    line-height: 4;
+}
+.text-playlist{
+    text-align: center;
+    padding: .3em;
+}
+
+.playlist-one{
+    min-height: 80vh;
+}
+
+.playlist-description-other{
+    padding: 10px;
+    width: 370px;
+}
+
+.capitalize{
+    text-transform: capitalize;
 }
 
 @media only screen  and (min-width: 450px){
@@ -81,4 +120,18 @@
         width: 250px;
         height: 375px;
     }
+
+    .playlist-one{
+        min-height: 80vh;
+    }
+    .playlist-description-other{
+        padding: 10px;
+        width: 80%;    
+    }
 }
+@media only screen  and (min-width: 769px){
+    .playlist-one{
+        min-height: 90vh;
+    }
+}
+
