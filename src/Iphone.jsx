@@ -17,7 +17,7 @@ useEffect(() => {
     else {
       setCurrentImg(currentImg + 1);
     }
-}, 2000)
+}, 5000)
   return () => clearInterval(imgInterval);
 }, [])
 
