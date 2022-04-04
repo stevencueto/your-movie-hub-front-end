@@ -121,13 +121,24 @@ select{
 .btn.smaller-btn{
     width: 120px;
     height: 30px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
+
     border: none;
 }
 
 #form-main{
     height: 30px;
     width: 130px;
-    border-radius: 8px 0 0 8px;
+    border-radius: 8px;
     border: none;
+}
+
+@media only screen and (min-width: 760px){
+    .btn.smaller-btn{
+        border-radius: 0 8px 8px 0;
+    }
+    #form-main{
+        border-radius: 8px 0 0 8px;
+    }    
+    
 }

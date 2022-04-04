@@ -1,12 +1,32 @@
 import './playlist.css'
 import NewPlaylists from './NewPlaylists'
 import AllMyPlayLists from './AllMyPlayLists'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import * as jose from 'jose'
+
 const Playlists = (props)=> {
   const [makeBigger, setMakeBigger] = useState('')
+  let navigate = useNavigate()
+
   const bigger = () =>{
     return makeBigger === "" ? "largerscreen" : ""
   }
+  const verifyUser = () =>{
+    const token = localStorage.getItem('token')
+    if (!!token) {
+      const user = jose.decodeJwt(token)
+      if (!user) {
+        localStorage.removeItem('token')
+        navigate("/", { replace: true });
+      }
+    }else{
+      navigate("/", { replace: true });
+    }
+  }
+  useEffect(() => {
+    verifyUser()
+  },[])
   return (
     <div className={`website-container playlists-cont ${makeBigger}`}>
       {props.errMessage ? <p className='error-message'>{props.errMessage}</p> : null}

@@ -7,6 +7,7 @@ import './moviedescription.css'
 import CastAndCrew from './CastAndCrew'
 import Trailer from './Trailer'
 import {useNavigate } from 'react-router-dom'
+import * as jose from 'jose'
 
 function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
   const posterRef = useRef(false)
@@ -131,17 +132,35 @@ function MovieDescription({name, addNewMovie, allMyPlaylists, addToPlalist}) {
     useEffect(()=>{
       runTime()
     }, [movie])
+
+    const verifyUser = () =>{
+      const token = localStorage.getItem('token')
+      if (!!token) {
+        const user = jose.decodeJwt(token)
+        if (!user) {
+          localStorage.removeItem('token')
+          navigate("/", { replace: true });
+        } else {
+          populateFunction()
+        }
+      }else{
+        navigate("/", { replace: true });
+      }
+    }
+    useEffect(() => {
+      verifyUser()
+    }, [])
 return (
     <div className='movie-detail' >
       <header className='movie-nav'>
-       <p className='title-small'> {movie.title || movie.name} </p> 
+       <p  className='title-small'> {movie.title || movie.name} </p> 
       </header>
       <div className='poster-large-screens' style={{backgroundImage: bigImg}}></div>
       <img src={img}  className="movie-poster"/>
-      <div ref={posterRef} className='movie-name'>
+      <div className='movie-name'>
       <div className='other-btns'>
-        <AddToPlayLists addNewMovie={addNewMovie} movie={movie} allMyPlaylists={allMyPlaylists} ></AddToPlayLists> 
-        <a id='forced'href={movie.homepage} target="_blank" ><button className='btn-other'>Watch Movie?</button></a>
+        <AddToPlayLists  addNewMovie={addNewMovie} movie={movie} allMyPlaylists={allMyPlaylists} ></AddToPlayLists> 
+        <a id='forced'href={movie.homepage} target="_blank" ><button  ref={posterRef} className='btn-other'>Watch Movie?</button></a>
         {errMessage ? <p className='error-mesage'> {errMessage} </p> : null}
       </div>
       

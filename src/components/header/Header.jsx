@@ -23,7 +23,11 @@ const Header  = (props) => {
   window.addEventListener("storage",(e) => {
     toggleBtn()
  });
-
+ const logOut = () => {
+  window.location.reload(false);
+  localStorage.clear();
+  setIsLogged(false)
+ }
  useEffect(()=>{
   toggleBtn()
  }, [])
@@ -44,8 +48,8 @@ const Header  = (props) => {
         <Link className="links" to="/search">Search</Link>
         <Link className="links" to="/explore">Explore</Link>
         <Link className="links" to="/playlist/">Playlists</Link>
-        { isLogged ? <p className="links" to='/' onClick={() => {localStorage.clear(); setIsLogged(false)}}>Logout</p> : <Link className="links" to='/login'>Login</Link>}
-        { !isLogged && <Link className="links" to="/explore">Register</Link>}
+        { isLogged ? <p className="links" to='/' onClick={logOut}>Logout</p> : <Link className="links" to='/login'>Login</Link>}
+        { !isLogged && <Link className="links" to="/register">Register</Link>}
 
       </nav>
     </header>

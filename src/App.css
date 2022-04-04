@@ -37,6 +37,9 @@ body{
 *:focus {
   outline: none;
 }
+#top-img{
+  display: none;
+}
 @media only screen  and (min-width: 769px){
   html{
     background-color: #2D2D2D;
@@ -50,10 +53,11 @@ body{
   .home-img-container{
       width: 320px;
       margin-top: -6vh;
-      background-image: url("./images/background-some.png");
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat;
+  }
+  #top-img{
+    display: block;
+    width: 350px;
+    margin-top: 8vh;
   }
 }
 .description-box{

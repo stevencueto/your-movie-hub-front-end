@@ -98,7 +98,7 @@ const Register = ()=> {
 	};
 	useEffect(() => {
 		const token = localStorage.getItem('token')
-		if (token) navigate("/", { replace: true })
+		if (!!token) navigate("/", { replace: true })
 		userNameRef.current.focus();
 	}, []);
 

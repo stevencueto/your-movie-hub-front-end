@@ -29,6 +29,7 @@ const Login = () => {
 
 	const loginUser = async(e) => {
 		e.preventDefault()
+		const toLogIn = possibleUser.email.toLowerCase()
 		try{
 			const loginRequest = await fetch(`https://yourmoviehubapi.herokuapp.com/auth/login`, {
 				method: 'POST',
@@ -36,7 +37,7 @@ const Login = () => {
 					'Content-Type': 'application/json',
 					"withCredentials": true
 				},
-				body: JSON.stringify(possibleUser),
+				body: JSON.stringify({email : toLogIn, password: possibleUser.password}),
 			})
 			const loginResponse = await loginRequest.json()
 			if (loginResponse.success) {
