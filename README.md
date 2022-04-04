@@ -68,3 +68,35 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# your-movie-hub-client
+Yout movie hub is a MERN app that allows the user to navigate the movie world. the server-side uses the https://www.themoviedb.org/ API for the movie information, mongoose, and MongoDB to store data and express.js and node.js, also using the JWT for user auth between the frontend and the backend. The front end is built on react using userRef, useEffect, useState as well as some custom hooks like query parameters to further improve the user experience.
+the idea behind this app is to enable the user to make a playlist for whatever occasion they deem necessary and make it easy for them to find the movie as well as where to watch it. bringing people closer together. 
+In the future, the app is going to have a feature to allow users to mark movies as watched, upload images as well as messages, and more!
+
+# friday29
+Took the day to do research about user auth, the API I wanted to use as well as the look and feel I wanted for the page.
+
+# Saturda30
+Made all the backend for user auth, using express mongoose, jwt, and cors; made the movie feature to add movies, edit movies, and delete movies;
+
+
+# Sunday
+Started the frontend frames; made the movie grids; started to work on the API calls, learned about superagent, met MVP,
+
+# monday
+Due to the side effects of my medication was not able to get much done aside from some styling;
+
+# Thuesday, Wednesday, and Thursday:
+Pretty much the same as Monday did some styling but not much done
+
+# Friday:
+Had to focus on getting stuff done, still experiencing side-effects but started to feel the pressure from the deadline approaching; started to work more on the backend and ran into a lot of bugs, due to the lack of work during the week had to make compromises in the features I wanted to add to the app. started to work more in the API calls, worked on the styling for the individual movie page;
+
+# satuday
+Worked all day to get the movie layout done, and added the deleted feature to the app. worked on getting the playlist to modify in real-time. added the cast and crew and similar movies
+
+
+# sunday
+added the recommended movies, made the playlist show page, and made the function to get the movie trailer.
