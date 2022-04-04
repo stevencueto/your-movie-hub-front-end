@@ -46,7 +46,6 @@ const Login = () => {
 					email: '',
 					password: ''
 				})
-				alert('Login successful')
 				window.location.reload(false);
 				navigate("/", { replace: true });
 			} else if(loginResponse.data === "Wrong Password"){
