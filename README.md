@@ -74,6 +74,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 Yout movie hub is a MERN app that allows the user to navigate the movie world. the server-side uses the https://www.themoviedb.org/ API for the movie information, mongoose, and MongoDB to store data and express.js and node.js, also using the JWT for user auth between the frontend and the backend. The front end is built on react using userRef, useEffect, useState as well as some custom hooks like query parameters to further improve the user experience.
 the idea behind this app is to enable the user to make a playlist for whatever occasion they deem necessary and make it easy for them to find the movie as well as where to watch it. bringing people closer together. 
 In the future, the app is going to have a feature to allow users to mark movies as watched, upload images as well as messages, and more!
+[http://yourmoviehub.herokuapp.com/]
 
 # friday29
 Took the day to do research about user auth, the API I wanted to use as well as the look and feel I wanted for the page.
