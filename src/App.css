@@ -30,6 +30,8 @@ input{
   text-align: center;
   color: #0e0e0e;
   line-height: 1em;
+  -webkit-appearance: none;
+  height:  2.5em;
 }
 body{
   max-width: 1600px;
